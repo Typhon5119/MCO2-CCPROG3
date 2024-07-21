@@ -49,6 +49,10 @@ public class HRSview {
         
 
         // this.mainFrame.add(title);
+        
+        this.mainFrame.setVisible(true);
+    }
+    public void addComponents(){
         this.mainFrame.add(HName);
         this.mainFrame.add(nRooms);
         this.mainFrame.add(addHotel);
@@ -57,7 +61,6 @@ public class HRSview {
         this.mainFrame.add(viewHotelAd);
         this.mainFrame.add(ManageHotel);
         this.mainFrame.add(Book);
-        this.mainFrame.setVisible(true);
     }
     public void setsorf(String text){
         this.s_or_f.setText(text);

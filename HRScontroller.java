@@ -37,7 +37,7 @@ public class HRScontroller {
                 VHadController vHadController = new VHadController(vHadview, model);
             }
         });
-
+        this.view.addComponents();
         
 
         }

@@ -1,6 +1,7 @@
 import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -30,7 +31,9 @@ public class VHadview {
         this.adViewFrame.setVisible(true);
     }
 
-    
+    public void adALtoButton(ActionListener a, JButton button){
+        button.addActionListener(a);
+    }
     public void addbutton(JButton button2add){
         buttons.add(button2add);
     }
@@ -41,5 +44,8 @@ public class VHadview {
     }
     public void addTextArea(){
         this.adViewFrame.add(textArea);
+    }
+    public void setTextArea(String text){
+        this.textArea.setText(text);
     }
 }
