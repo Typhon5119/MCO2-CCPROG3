@@ -37,6 +37,19 @@ public class HRScontroller {
                 VHadController vHadController = new VHadController(vHadview, model);
             }
         });
+        this.view.setactionListener3(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                System.out.println("Manage");
+            }
+        });
+        this.view.setactionListener4(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                BookView bookView = new BookView();
+                BookController bookController = new BookController(bookView, model);
+            }
+        });
         this.view.addComponents();
         
 
