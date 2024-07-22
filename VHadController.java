@@ -18,12 +18,12 @@ public class VHadController {
                     
                     String info = "";
                     for (int k = 0; k <  hrSmodel.getHotellist().get(j).getReservationList().size(); k++){
-                    info +=  hrSmodel.getHotellist().get(j).getReservationList().get(k).getGuestName() + ":";
-                    info += "Room name: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getRoom().getName();
-                    info += "Check in date: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCheckIn();
-                    info += "Check out date: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCheckOut();
-                    info += "Cost per night: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCostPerNight();
-                    info += "Total Cost: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getTotalCost();
+                    info +=  hrSmodel.getHotellist().get(j).getReservationList().get(k).getGuestName() + ":" + "\n";
+                    info += "Room name: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getRoom().getName() + "\n";
+                    info += "Check in date: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCheckIn() + "\n";
+                    info += "Check out date: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCheckOut() + "\n";
+                    info += "Cost per night: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCostPerNight() + "\n";
+                    info += "Total Cost: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getTotalCost() + "\n\n";
                     }
                     if (hrSmodel.getHotellist().get(j).getReservationList().size() == 0){
                         info += "no reservations";
