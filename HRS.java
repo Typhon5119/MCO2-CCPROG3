@@ -378,7 +378,7 @@ public class HRS {
                         String checkIn = scanner.nextLine();
                         arr1 = checkIn.split("/");
                         
-                        System.out.println("Check out date dd/hh/mm (day/hour/minute): ");
+                        System.out.println("Check out date dd/hh/mm (day/hour/minute):");
                         String checkOut = scanner.nextLine();
                         arr2 = checkOut.split("/");
                         length = arr1.length;
