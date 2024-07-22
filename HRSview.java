@@ -14,8 +14,8 @@ public class HRSview {
     private JFrame mainFrame;
     private JButton addHotel, viewHotel, viewHotelAd;
     private JButton ManageHotel, Book;
-    private JLabel title, s_or_f;
-    private JTextField HName, nRooms;
+    private JLabel title, s_or_f, HnameLabel, nRoomsLabel;
+    private JTextField HName, nRooms, guestName;
     public HRSview(){
         this.mainFrame = new JFrame("My Simple GUI");
 
@@ -25,8 +25,12 @@ public class HRSview {
         this.title = new JLabel();
         this.title.setText("Hotel Reservation System");
 
+        this.HnameLabel = new JLabel("Hotel Name");
+
         this.HName = new JTextField();
         this.HName.setColumns(10);
+
+        this.nRoomsLabel = new JLabel("Number of rooms");
         this.nRooms = new JTextField();
         this.nRooms.setColumns(5);
 
@@ -40,12 +44,18 @@ public class HRSview {
 
         this.viewHotel = new JButton("View hotel");
         this.viewHotel.setPreferredSize(new Dimension(220, 30));
+
         this.viewHotelAd = new JButton("View hotel (Advanced)");
         this.viewHotelAd.setPreferredSize(new Dimension(220, 30));
+
         this.ManageHotel = new JButton("Manage hotel");
         this.ManageHotel.setPreferredSize(new Dimension(220, 30));
+
         this.Book = new JButton("Book");
         this.Book.setPreferredSize(new Dimension(220, 30));
+
+        this.guestName = new JTextField();
+        this.guestName.setColumns(10);
         
 
         // this.mainFrame.add(title);
@@ -53,7 +63,9 @@ public class HRSview {
         this.mainFrame.setVisible(true);
     }
     public void addComponents(){
+        this.mainFrame.add(HnameLabel);
         this.mainFrame.add(HName);
+        this.mainFrame.add(nRoomsLabel);
         this.mainFrame.add(nRooms);
         this.mainFrame.add(addHotel);
         this.mainFrame.add(s_or_f);
