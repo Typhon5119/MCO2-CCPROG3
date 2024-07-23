@@ -12,7 +12,9 @@ public class HRScontroller {
             public void actionPerformed(ActionEvent e){
                 String name = view.getHNameText();
                 String nRooms = view.getnRooms();
-                boolean res = model.addHotel(name, nRooms);
+                String nDRooms = view.getnDrooms();
+                String nERooms = view.getnErooms();
+                boolean res = model.addHotel(name, nRooms, nDRooms, nERooms);
                 if (res){
                     view.setsorf("Added");
                 }

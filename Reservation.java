@@ -20,6 +20,11 @@ public class Reservation {
     private final Room room;
 
     /**
+     * total cost of reservation
+     */
+    private double totalCost;
+
+    /**
      * Reservation constructor
      * @param guestName name of guest
      * @param checkIn check in date
@@ -32,6 +37,7 @@ public class Reservation {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.room = room;
+        totalCost = this.getCostPerNight() * this.getLengthOfStay();
 
     }
     /**
@@ -100,10 +106,14 @@ public class Reservation {
      * returns the total cost
      * @return total cost
      */
-    public float getTotalCost(){
+    public double getTotalCost(){
 
-        return this.getCostPerNight() * this.getLengthOfStay();
+        return totalCost;
 
+    }
+
+    public void setTotalCost(double newCost){
+        this.totalCost = newCost;
     }
 
 }

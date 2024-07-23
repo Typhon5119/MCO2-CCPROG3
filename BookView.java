@@ -15,8 +15,8 @@ import java.util.ArrayList;
 public class BookView {
     JFrame Bookframe;
     ArrayList<JButton> hotelButtons = new ArrayList<>();
-    JTextField guestName, checkInField, checkOuTextField;
-    JLabel guestnamLabel, checkinLabel, checkoutLabel;
+    JTextField guestName, checkInField, checkOuTextField, pCodeField;
+    JLabel guestnamLabel, checkinLabel, checkoutLabel, pCodeLabel;
     public BookView(){
         Bookframe = new JFrame();
         this.Bookframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -37,6 +37,11 @@ public class BookView {
 
         this.guestnamLabel = new JLabel("Guest name");
 
+        this.pCodeLabel = new JLabel("Promo Code");
+
+        this.pCodeField = new JTextField();
+        this.pCodeField.setColumns(10);
+
         this.Bookframe.setVisible(true);
     }
     public String getGuestName(){
@@ -48,6 +53,9 @@ public class BookView {
     public String getCheckOut(){
         return checkOuTextField.getText();
     }
+    public String getPCode(){
+        return pCodeField.getText();
+    }
     public void addTextFields(){
         this.Bookframe.add(guestnamLabel);
         this.Bookframe.add(guestName);
@@ -55,6 +63,8 @@ public class BookView {
         this.Bookframe.add(checkInField);
         this.Bookframe.add(checkoutLabel);
         this.Bookframe.add(checkOuTextField);
+        this.Bookframe.add(pCodeLabel);
+        this.Bookframe.add(pCodeField);
     }
     public void adALtoButton(ActionListener actionListener, JButton button){
         button.addActionListener(actionListener);

@@ -14,10 +14,19 @@ public class HRSview {
     private JFrame mainFrame;
     private JButton addHotel, viewHotel, viewHotelAd;
     private JButton ManageHotel, Book;
-    private JLabel title, s_or_f, HnameLabel, nRoomsLabel;
-    private JTextField HName, nRooms, guestName;
+    private JLabel title, s_or_f, HnameLabel, nRoomsLabel, nDRoomsLabel, nERoomsLabel;
+    private JTextField HName, nRooms, guestName,  nDRoomsTextF, nERoomsTextF;
     public HRSview(){
         this.mainFrame = new JFrame("My Simple GUI");
+
+        this.nDRoomsLabel = new JLabel("Deluxe Rooms");
+        this.nERoomsLabel = new JLabel("Executive Rooms");
+        
+        this.nDRoomsTextF = new JTextField();
+        this.nDRoomsTextF.setColumns(5);
+
+        this.nERoomsTextF = new JTextField();
+        this.nERoomsTextF.setColumns(5);
 
 		this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.mainFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -30,7 +39,7 @@ public class HRSview {
         this.HName = new JTextField();
         this.HName.setColumns(10);
 
-        this.nRoomsLabel = new JLabel("Number of rooms");
+        this.nRoomsLabel = new JLabel("Standard rooms");
         this.nRooms = new JTextField();
         this.nRooms.setColumns(5);
 
@@ -67,6 +76,10 @@ public class HRSview {
         this.mainFrame.add(HName);
         this.mainFrame.add(nRoomsLabel);
         this.mainFrame.add(nRooms);
+        this.mainFrame.add(nDRoomsLabel);
+        this.mainFrame.add(nDRoomsTextF);
+        this.mainFrame.add(nERoomsLabel);
+        this.mainFrame.add(nERoomsTextF);
         this.mainFrame.add(addHotel);
         this.mainFrame.add(s_or_f);
         this.mainFrame.add(viewHotel);
@@ -82,6 +95,12 @@ public class HRSview {
     }
     public String getnRooms(){
         return this.nRooms.getText();
+    }
+    public String getnDrooms(){
+        return this.nDRoomsTextF.getText();
+    }
+    public String getnErooms(){
+        return this.nERoomsTextF.getText();
     }
     public void setactionListenerAd(ActionListener actionListener){
         this.viewHotelAd.addActionListener(actionListener);

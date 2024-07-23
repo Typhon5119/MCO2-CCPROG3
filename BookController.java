@@ -24,6 +24,7 @@ public class BookController {
                        
                         String guestName = bv.getGuestName();
                         String bookHotelName = hrSmodel.getHotellist().get(j).getName();
+                        String pCode = bv.getPCode();
     
                         int length;
                         int length2;
@@ -62,7 +63,8 @@ public class BookController {
                                 System.out.println("invalid booking");
                             }
                             else {
-                                System.out.println(hrSmodel.getHotellist().get(indexOfHotel).findRoom(checkIn, checkOut, guestName)); 
+                                System.out.println(hrSmodel.getHotellist().get(indexOfHotel).findRoom(checkIn, checkOut, guestName, pCode));
+
                             }
                         }
                         
@@ -70,7 +72,7 @@ public class BookController {
                     else {
                         System.out.println("No hotels to book");
                     }
-                    hrSmodel.getHotellist().get(j).printRoomReservations(1);
+                    
                 }
             }, bv.getButtons().get(i));
         }

@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 
@@ -18,12 +19,13 @@ public class VHadController {
                     
                     String info = "";
                     for (int k = 0; k <  hrSmodel.getHotellist().get(j).getReservationList().size(); k++){
+                        String formattedD = String.format("%.2f", hrSmodel.getHotellist().get(j).getReservationList().get(k).getTotalCost());
                         info +=  hrSmodel.getHotellist().get(j).getReservationList().get(k).getGuestName() + ":" + "\n";
                         info += "Room name: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getRoom().getName() + "\n";
                         info += "Check in date: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCheckIn() + "\n";
                         info += "Check out date: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCheckOut() + "\n";
                         info += "Cost per night: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCostPerNight() + "\n";
-                        info += "Total Cost: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getTotalCost() + "\n\n";
+                        info += "Total Cost: " +  formattedD + "\n\n";
                     }
                     for (int m = 0; m < hrSmodel.getHotellist().get(j).getRooms().size(); m++){
                         System.out.println(hrSmodel.getHotellist().get(j).getRooms().get(m).getName());

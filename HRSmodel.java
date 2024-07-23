@@ -5,10 +5,11 @@ public class HRSmodel {
     public HRSmodel(){
 
     }
-    public boolean addHotel(String hotelNameInput, String nRooms){
+    public boolean addHotel(String hotelNameInput, String nRooms, String nDrooms, String nErooms){
+        int totRooms = Integer.parseInt(nRooms) + Integer.parseInt(nDrooms) + Integer.parseInt(nErooms);
         boolean res = false;
         try{
-        if (Integer.parseInt(nRooms) >= 0 && Integer.parseInt(nRooms) <= 50){
+        if (totRooms >= 0 && totRooms <= 50){
             ArrayList <Room> rooms = new ArrayList<>();
             // name should be unique
             boolean isNameUnique = true;
@@ -25,6 +26,16 @@ public class HRSmodel {
                     rooms.add(room);
                     room = null;
 
+                }
+                for (int j = 0; j < Integer.parseInt(nDrooms); j++){
+                    Room room = new Deluxe();
+                    rooms.add(room);
+                    room = null;
+                }
+                for (int k = 0; k < Integer.parseInt(nErooms); k++){
+                    Room room = new Executive();
+                    rooms.add(room);
+                    room = null;
                 }
 
 

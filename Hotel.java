@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +13,8 @@ public class Hotel{
      * rooms of the hotel
      */
     private ArrayList<Room> rooms = new ArrayList<>();
+    // private ArrayList<Deluxe> Drooms = new ArrayList<>();
+    // private ArrayList<Executive> Erooms = new ArrayList<>();
     /**
      * list of reservations in a hotel
      */
@@ -79,7 +82,7 @@ public class Hotel{
      * @param guestName name of guest booking
      * @return name of room assigned to guest
      */
-    public String findRoom(String startDate, String endDate, String guestName){
+    public String findRoom(String startDate, String endDate, String guestName, String pCode){
         int j;
         for (int i = 0; i < rooms.size(); i++){
             for (j = 0; j < reservationList.size(); j++){
@@ -134,7 +137,13 @@ public class Hotel{
                 }
             }
             if (j == reservationList.size()){
-                reservationList.add(new Reservation(guestName, startDate, endDate, rooms.get(i)));
+                Reservation temp = new Reservation(guestName, startDate, endDate, rooms.get(i));
+                if (pCode.equals("I_WORK_HERE")){
+                    
+                    double newCost = temp.getTotalCost() * .10;
+                    temp.setTotalCost(newCost);
+                }
+                reservationList.add(temp);
                 return rooms.get(i).getName();
             }
         }
