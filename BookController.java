@@ -4,13 +4,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class BookController {
-    BookView bv;
-    HRSmodel hrSmodel;
+    private BookView bv;
+    private HRSmodel hrSmodel;
+    private int selectedRoomType = 0;
     public BookController(BookView bv, HRSmodel hv){
         this.bv = bv;
         this.hrSmodel = hv;
         
         bv.addTextFields();
+        
+        
+
         for (int i = 0; i < hrSmodel.getHotellist().size(); i++){
             bv.addbutton(new JButton(hrSmodel.getHotellist().get(i).getName()));
             

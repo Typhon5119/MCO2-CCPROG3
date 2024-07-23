@@ -6,6 +6,15 @@ public class HRSmodel {
 
     }
     public boolean addHotel(String hotelNameInput, String nRooms, String nDrooms, String nErooms){
+        if (nRooms.equals("")){
+            nRooms = "0";
+        }
+        if (nDrooms.equals("")){
+            nDrooms = "0";
+        }
+        if (nErooms.equals("")){
+            nErooms = "0";
+        }
         int totRooms = Integer.parseInt(nRooms) + Integer.parseInt(nDrooms) + Integer.parseInt(nErooms);
         boolean res = false;
         try{

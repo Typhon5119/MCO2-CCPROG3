@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class BookView {
     JFrame Bookframe;
     ArrayList<JButton> hotelButtons = new ArrayList<>();
+    JButton s, d, e;
     JTextField guestName, checkInField, checkOuTextField, pCodeField;
     JLabel guestnamLabel, checkinLabel, checkoutLabel, pCodeLabel;
     public BookView(){
@@ -25,7 +26,13 @@ public class BookView {
 
         this.checkInField = new JTextField();
         this.checkInField.setColumns(10);
-
+        s = new JButton("Standard"); 
+        d = new JButton("Deluxe"); 
+        e = new JButton("Executive");
+        s.setSize(new Dimension(220, 30));
+        d.setSize(new Dimension(220, 30));
+        e.setSize(new Dimension(220, 30));
+        
         this.checkOuTextField = new JTextField();
         this.checkOuTextField.setColumns(10);
 
@@ -65,6 +72,9 @@ public class BookView {
         this.Bookframe.add(checkOuTextField);
         this.Bookframe.add(pCodeLabel);
         this.Bookframe.add(pCodeField);
+        this.Bookframe.add(s);
+        this.Bookframe.add(d);
+        this.Bookframe.add(e);
     }
     public void adALtoButton(ActionListener actionListener, JButton button){
         button.addActionListener(actionListener);

@@ -19,7 +19,9 @@ public class VHadController {
                     
                     String info = "";
                     for (int k = 0; k <  hrSmodel.getHotellist().get(j).getReservationList().size(); k++){
+                        
                         String formattedD = String.format("%.2f", hrSmodel.getHotellist().get(j).getReservationList().get(k).getTotalCost());
+                        
                         info +=  hrSmodel.getHotellist().get(j).getReservationList().get(k).getGuestName() + ":" + "\n";
                         info += "Room name: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getRoom().getName() + "\n";
                         info += "Check in date: " +  hrSmodel.getHotellist().get(j).getReservationList().get(k).getCheckIn() + "\n";

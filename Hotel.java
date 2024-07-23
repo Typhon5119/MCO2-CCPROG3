@@ -140,9 +140,14 @@ public class Hotel{
                 Reservation temp = new Reservation(guestName, startDate, endDate, rooms.get(i));
                 if (pCode.equals("I_WORK_HERE")){
                     
-                    double newCost = temp.getTotalCost() * .10;
+                    double newCost = temp.getTotalCost() * .90;
                     temp.setTotalCost(newCost);
                 }
+                if (pCode.equals("STAY4-GET1")){
+                    if (temp.getLengthOfStay() + 1 >= 5)
+                        temp.setTotalCost(temp.getTotalCost() - temp.getCostPerNight());
+                }
+                
                 reservationList.add(temp);
                 return rooms.get(i).getName();
             }
