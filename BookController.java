@@ -13,7 +13,12 @@ public class BookController {
         
         bv.addTextFields();
         
-        
+        bv.adALtoButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                
+            }
+        }, null);
 
         for (int i = 0; i < hrSmodel.getHotellist().size(); i++){
             bv.addbutton(new JButton(hrSmodel.getHotellist().get(i).getName()));

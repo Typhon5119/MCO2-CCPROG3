@@ -82,6 +82,15 @@ public class BookView {
     public void addbutton(JButton button2add){
         hotelButtons.add(button2add);
     }
+    public JButton getS(){
+        return this.s;
+    }
+    public JButton getD(){
+        return this.d;
+    }
+    public JButton getE(){
+        return this.e;
+    }
     public ArrayList<JButton> getButtons(){
         return hotelButtons;
     }
