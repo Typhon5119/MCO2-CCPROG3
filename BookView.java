@@ -13,11 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 public class BookView {
-    JFrame Bookframe;
-    ArrayList<JButton> hotelButtons = new ArrayList<>();
-    JButton s, d, e;
-    JTextField guestName, checkInField, checkOuTextField, pCodeField;
-    JLabel guestnamLabel, checkinLabel, checkoutLabel, pCodeLabel;
+    private JFrame Bookframe;
+    private ArrayList<JButton> hotelButtons = new ArrayList<>();
+    private JButton s, d, e;
+    private JTextField guestName, checkInField, checkOuTextField, pCodeField;
+    private JLabel guestnamLabel, checkinLabel, checkoutLabel, pCodeLabel;
     public BookView(){
         Bookframe = new JFrame();
         this.Bookframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

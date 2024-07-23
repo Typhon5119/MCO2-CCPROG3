@@ -16,9 +16,16 @@ public class BookController {
         bv.adALtoButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                
+                selectedRoomType = 0;
             }
-        }, null);
+        }, bv.getS());
+
+        bv.adALtoButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                selectedRoomType = 1;
+            }
+        }, bv.getD());
 
         for (int i = 0; i < hrSmodel.getHotellist().size(); i++){
             bv.addbutton(new JButton(hrSmodel.getHotellist().get(i).getName()));
