@@ -29,9 +29,9 @@ public class BookView {
         s = new JButton("Standard"); 
         d = new JButton("Deluxe"); 
         e = new JButton("Executive");
-        s.setSize(new Dimension(220, 30));
-        d.setSize(new Dimension(220, 30));
-        e.setSize(new Dimension(220, 30));
+        s.setPreferredSize(new Dimension(220, 30));
+        d.setPreferredSize(new Dimension(220, 30));
+        e.setPreferredSize(new Dimension(220, 30));
         
         this.checkOuTextField = new JTextField();
         this.checkOuTextField.setColumns(10);
