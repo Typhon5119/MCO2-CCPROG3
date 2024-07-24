@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,7 @@ public class Hotel{
     /**
      * rooms of the hotel
      */
-    private ArrayList<Room> rooms = new ArrayList<>();
+    private RoomList rooms;
     /**
      * list of reservations in a hotel
      */
@@ -22,7 +23,7 @@ public class Hotel{
      * @param name name of hotel
      * @param rooms rooms of hotel
      */
-    public Hotel(String name, ArrayList<Room> rooms){
+    public Hotel(String name, RoomList rooms){
 
         this.name = name;
         this.rooms = rooms;
@@ -32,11 +33,20 @@ public class Hotel{
      * adds a room to the hotel
      * @param room room to add
      */
-    public void addRoom(Room room){
+    public void addRoom(Standard room, int typeOfRoom){
 
-        if (rooms.size() < 50){
+        if (rooms.getSize() < 50){
 
-            rooms.add(room);
+            switch(typeOfRoom){
+
+                case 1: rooms.Srooms.add(room);
+                break;
+                case 2: rooms.Drooms.add((Deluxe) room);
+                break;
+                case 3: rooms.Erooms.add((Executive)room);
+                break;
+
+            }
 
         } else {
 
@@ -49,10 +59,21 @@ public class Hotel{
      * deletes a room from the hotel
      * @param index index of room to delete
      */
-    public void deleteRoom(int index){
-        if (rooms.size() > 1){
+    public void deleteRoom(int index, int typeOfRoom){
 
-            rooms.remove(index);
+
+        if (rooms.getSize() > 1){
+
+            switch(typeOfRoom){
+
+                case 1: this.rooms.Srooms.remove(index);
+                break;
+                case 2: this.rooms.Drooms.remove(index);
+                break;
+                case 3: this.rooms.Erooms.remove(index);
+                break;
+
+            }
 
         } else {
             
@@ -65,11 +86,24 @@ public class Hotel{
      */
     public void setRoomsNameAuto(){
 
-        for (int i = 0; i < this.rooms.size(); i++){
+        for (int i = 0; i < this.rooms.Srooms.size(); i++){
 
-            this.rooms.get(i).setName("Room " + Integer.toString(i + 1));
+            this.rooms.Srooms.get(i).setName("Standard Room " + Integer.toString(i + 1));
 
         }
+
+        for (int i = 0; i < this.rooms.Drooms.size(); i++){
+
+            this.rooms.Drooms.get(i).setName("Deluxe Room " + Integer.toString(i + 1));
+
+        }
+
+        for (int i = 0; i < this.rooms.Erooms.size(); i++){
+
+            this.rooms.Erooms.get(i).setName("Executive Room " + Integer.toString(i + 1));
+
+        }
+
 
     }
     /**
@@ -79,7 +113,7 @@ public class Hotel{
      * @param guestName name of guest booking
      * @return name of room assigned to guest
      */
-    public String findRoom(String startDate, String endDate, String guestName){
+    public String findRoom(String startDate, String endDate, String guestName, String pCode){
         int j;
         for (int i = 0; i < rooms.size(); i++){
             for (j = 0; j < reservationList.size(); j++){
@@ -134,7 +168,18 @@ public class Hotel{
                 }
             }
             if (j == reservationList.size()){
-                reservationList.add(new Reservation(guestName, startDate, endDate, rooms.get(i)));
+                Reservation temp = new Reservation(guestName, startDate, endDate, rooms.get(i));
+                if (pCode.equals("I_WORK_HERE")){
+                    
+                    double newCost = temp.getTotalCost() * .90;
+                    temp.setTotalCost(newCost);
+                }
+                if (pCode.equals("STAY4-GET1")){
+                    if (temp.getLengthOfStay() + 1 >= 5)
+                        temp.setTotalCost(temp.getTotalCost() - temp.getCostPerNight());
+                }
+                
+                reservationList.add(temp);
                 return rooms.get(i).getName();
             }
         }
@@ -147,9 +192,23 @@ public class Hotel{
      */
     public void setRoomsPrice(float basePrice){
 
-        for(int i = 0; i < this.rooms.size(); i++){
+        for(int i = 0; i < this.rooms.Srooms.size(); i++){
 
-            this.rooms.get(i).setBasePrice(basePrice);
+            this.rooms.Srooms.get(i).setBasePrice(basePrice);
+
+        }
+
+        for(int i = 0; i < this.rooms.Drooms.size(); i++){
+
+            this.rooms.Drooms.get(i).setBasePrice(basePrice);
+            this.rooms.Drooms.get(i).adjustRoomPrice();
+
+        }
+
+        for(int i = 0; i < this.rooms.Erooms.size(); i++){
+
+            this.rooms.Erooms.get(i).setBasePrice(basePrice);
+            this.rooms.Drooms.get(i).adjustRoomPrice();
 
         }
 
@@ -163,6 +222,8 @@ public class Hotel{
         return this.name;
 
     }
+
+
     /**
      * changes the name of the hotel
      * @param newName new name
@@ -185,8 +246,8 @@ public class Hotel{
     public String displayHotel(){
         String hotelinfoString = "";
         hotelinfoString += this.name + ":" + "\n";
-        hotelinfoString += "Base Price: " + Float.toString(this.rooms.get(0).getBasePrice()) + "\n";
-        hotelinfoString += Integer.toString(this.rooms.size()) + " Rooms" + "\n";
+        hotelinfoString += "Base Price: " + Float.toString(this.rooms.Srooms.get(0).getBasePrice()) + "\n";
+        hotelinfoString += Integer.toString(this.rooms.getSize()) + " Rooms" + "\n";
 
         float totalEarnings = 0;
 
@@ -212,15 +273,21 @@ public class Hotel{
      * displays the name of the rooms of the hotel
      */
     public void displayRooms(){
-        for (int i = 0; i < rooms.size(); i++){
-            System.out.println(rooms.get(i).getName());
+        for (int i = 0; i < rooms.Srooms.size(); i++){
+            System.out.println(rooms.Srooms.get(i).getName());
+        }
+        for (int i = 0; i < rooms.Drooms.size(); i++) {
+            System.out.println(rooms.Drooms.get(i).getName());
+        }
+        for (int i = 0; i < rooms.Erooms.size(); i++) {
+            System.out.println(rooms.Erooms.get(i).getName());
         }
     }
     /**
      * returns the rooms of the hotel
      * @return the rooms of the hotel
      */
-    public ArrayList<Room> getRooms(){
+    public RoomList getRooms(){
 
         return this.rooms;
 
@@ -234,7 +301,11 @@ public class Hotel{
 
         ArrayList <Reservation> tempReservations = new ArrayList<>(this.reservationList);
 
-        ArrayList <Room> tempRooms = new ArrayList<>(this.rooms);
+        ArrayList <Standard> tempRooms = new ArrayList<>(this.rooms.Srooms);
+        tempRooms.addAll(rooms.Drooms);
+        tempRooms.addAll(rooms.Erooms);
+        
+
 
         for (int i = 0; i < tempReservations.size(); i++){
             
@@ -255,33 +326,10 @@ public class Hotel{
 
                 }
 
-//                tempReservations.remove(i);
-//                i--;
-
+      
             }
 
         }
-
-   /*      for (int i = 0; i < tempReservations.size(); i++){
-
-            tempRooms.add(tempReservations.get(i).getRoom());
-
-        }
-        
-        for (int i = 0; i < tempRooms.size(); i++){
-
-            for (int j = i + 1; j < tempRooms.size(); i++){
-
-                if (tempRooms.get(i).getName().equals(tempRooms.get(j).getName())){
-
-                    tempRooms.remove(j);
-
-                }
-
-            }
-
-        } */
-
         return tempRooms.size();
 
     }
@@ -292,7 +340,7 @@ public class Hotel{
      */
     public int getBookedRooms(String date){
 
-        return this.rooms.size() - this.getAvailableRooms(date);
+        return this.rooms.getSize() - this.getAvailableRooms(date);
 
     }
 
@@ -319,9 +367,13 @@ public class Hotel{
      */
     public void printRoomReservations(int index){
 
+        ArrayList <Standard> tempRooms = new ArrayList<>(rooms.Srooms);
+        tempRooms.addAll(rooms.Drooms);
+        tempRooms.addAll(rooms.Erooms); 
+
         for (int i = 0; i < this.reservationList.size(); i++){
 
-            if (this.rooms.get(index).getName().equals(this.reservationList.get(i).getRoom().getName())){
+            if (tempRooms.get(index).getName().equals(this.reservationList.get(i).getRoom().getName())){
 
                 System.out.println(this.reservationList.get(i).getCheckIn() + " - " + this.reservationList.get(i).getCheckOut());
 

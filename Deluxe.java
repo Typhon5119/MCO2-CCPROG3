@@ -4,6 +4,13 @@ public class Deluxe extends Standard{
         super();
         finalPrice = this.getBasePrice() + (this.getBasePrice() * .20);
     }
+
+    public void adjustRoomPrice(){
+
+        finalPrice = this.getBasePrice() + (this.getBasePrice() * .20);
+
+    }
+
     public double getFinalBP(){
         return this.finalPrice;
     }
