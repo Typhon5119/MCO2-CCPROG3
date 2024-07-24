@@ -20,6 +20,11 @@ public class Reservation {
     private final Room room;
 
     /**
+     * total cost of reservation
+     */
+    private double totalCost;
+
+    /**
      * Reservation constructor
      * @param guestName name of guest
      * @param checkIn check in date
@@ -32,6 +37,7 @@ public class Reservation {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.room = room;
+        totalCost = this.getCostPerNight() * this.getLengthOfStay();
 
     }
     /**
@@ -70,7 +76,12 @@ public class Reservation {
      */
     public Room getRoom(){
 
-        return this.room;
+        if (room instanceof Deluxe){
+            return ((Deluxe) room);
+        }
+        if (room instanceof Executive){
+            return ((Executive) room);
+        }
 
     }
 
@@ -78,17 +89,26 @@ public class Reservation {
      * returns the base price (the cost per night) of the room
      * @return base price of room
      */
-    public float getCostPerNight(){
+    public double getCostPerNight(){
+
+        if (room instanceof Deluxe){
+            return ((Deluxe) room).getFinalBP();
+        }
+        if (room instanceof Executive){
+            return ((Executive) room).getFinalBP();
+        }
 
         return this.room.getBasePrice();
 
     }
+
+    
     
     /**
      * returns the length of stay in days
      * @return length of stay
      */
-    private float getLengthOfStay(){
+    public float getLengthOfStay(){
         String[] arr1 = this.checkIn.split("/");
         String[] arr2 = this.checkOut.split("/");
 
@@ -100,10 +120,15 @@ public class Reservation {
      * returns the total cost
      * @return total cost
      */
-    public float getTotalCost(){
+    public double getTotalCost(){
 
-        return this.getCostPerNight() * this.getLengthOfStay();
+        return totalCost;
 
+    }
+
+
+    public void setTotalCost(double newCost){
+        this.totalCost = newCost;
     }
 
 }
