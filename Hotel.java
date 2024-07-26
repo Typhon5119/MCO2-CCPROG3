@@ -82,7 +82,7 @@ public class Hotel{
      * @param guestName name of guest booking
      * @return name of room assigned to guest
      */
-    public String findRoom(String startDate, String endDate, String guestName, String pCode){
+    public String findRoom(String startDate, String endDate, String guestName, String pCode, int rType){
         int j;
         for (int i = 0; i < rooms.size(); i++){
             for (j = 0; j < reservationList.size(); j++){
@@ -136,7 +136,9 @@ public class Hotel{
                     }
                 }
             }
-            if (j == reservationList.size()){
+            if ((j == reservationList.size() && rType == 0 && ((rooms.get(i) instanceof Deluxe == false) && (rooms.get(i) instanceof Executive) == false))
+                || (j == reservationList.size() && rType == 1 && rooms.get(i) instanceof Deluxe)
+                || (j == reservationList.size() && rType == 2 && rooms.get(i) instanceof Executive)){
                 Reservation temp = new Reservation(guestName, startDate, endDate, rooms.get(i));
                 if (pCode.equals("I_WORK_HERE")){
                     
@@ -154,6 +156,7 @@ public class Hotel{
         }
         return "Cannot find room";
     }
+
 
     /**
      * changes base price of all rooms

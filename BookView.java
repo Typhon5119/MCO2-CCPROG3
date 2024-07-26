@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import java.awt.FlowLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,6 +31,7 @@ public class BookView {
         d = new JButton("Deluxe"); 
         e = new JButton("Executive");
         s.setPreferredSize(new Dimension(220, 30));
+        s.setBackground(Color.GREEN);
         d.setPreferredSize(new Dimension(220, 30));
         e.setPreferredSize(new Dimension(220, 30));
         
@@ -98,5 +100,23 @@ public class BookView {
         for (int i = 0; i < hotelButtons.size(); i++){
             this.Bookframe.add(hotelButtons.get(i));
         }
+    }
+    public void markS(){
+        this.s.setBackground(Color.GREEN);
+    }
+    public void markD(){
+        this.d.setBackground(Color.GREEN);
+    }
+    public void markE(){
+        this.e.setBackground(Color.GREEN);
+    }
+    public void unMkS(){
+        this.s.setBackground(new JButton().getBackground());
+    }
+    public void unMkD(){
+        this.d.setBackground(new JButton().getBackground());
+    }
+    public void unMkE(){
+        this.e.setBackground(new JButton().getBackground());
     }
 }

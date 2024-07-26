@@ -17,6 +17,9 @@ public class BookController {
             @Override
             public void actionPerformed(ActionEvent e){
                 selectedRoomType = 0;
+                bv.markS();
+                bv.unMkD();
+                bv.unMkE();
             }
         }, bv.getS());
 
@@ -24,8 +27,22 @@ public class BookController {
             @Override
             public void actionPerformed(ActionEvent e){
                 selectedRoomType = 1;
+                bv.markD();
+                bv.unMkE();
+                bv.unMkS();
             }
         }, bv.getD());
+
+        bv.adALtoButton(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                selectedRoomType = 2;
+                bv.markE();
+                bv.unMkD();
+                bv.unMkS();
+            }
+        }, bv.getE());
+
 
         for (int i = 0; i < hrSmodel.getHotellist().size(); i++){
             bv.addbutton(new JButton(hrSmodel.getHotellist().get(i).getName()));
@@ -79,7 +96,7 @@ public class BookController {
                                 System.out.println("invalid booking");
                             }
                             else {
-                                System.out.println(hrSmodel.getHotellist().get(indexOfHotel).findRoom(checkIn, checkOut, guestName, pCode));
+                                System.out.println(hrSmodel.getHotellist().get(indexOfHotel).findRoom(checkIn, checkOut, guestName, pCode, selectedRoomType));
 
                             }
                         }

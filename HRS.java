@@ -395,7 +395,7 @@ public class HRS {
                             System.out.println("invalid booking");
                         }
                         else {
-                            System.out.println(hotelList.get(indexOfHotel).findRoom(checkIn, checkOut, guestName, guestName)); // 4th should be pCode
+                            System.out.println(hotelList.get(indexOfHotel).findRoom(checkIn, checkOut, guestName, guestName, 1)); // 4th should be pCode
                         }
                     }
                     
