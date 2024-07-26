@@ -3,6 +3,7 @@ public class Deluxe extends Room{
     public Deluxe(){
         super();
         finalPrice = this.getBasePrice() + (this.getBasePrice() * .20);
+        this.basePrice = finalPrice;
     }
     public double getFinalBP(){
         return this.finalPrice;

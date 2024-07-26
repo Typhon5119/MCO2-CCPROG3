@@ -13,11 +13,11 @@ import java.awt.event.ActionListener;
 public class HRSview {
     private JFrame mainFrame;
     private JButton addHotel, viewHotel, viewHotelAd;
-    private JButton ManageHotel, Book;
+    private JButton ManageHotel, Book, DPadj;
     private JLabel title, s_or_f, HnameLabel, nRoomsLabel, nDRoomsLabel, nERoomsLabel;
     private JTextField HName, nRooms, guestName,  nDRoomsTextF, nERoomsTextF;
     public HRSview(){
-        this.mainFrame = new JFrame("My Simple GUI");
+        this.mainFrame = new JFrame("HRS");
 
         this.nDRoomsLabel = new JLabel("Deluxe Rooms");
         this.nERoomsLabel = new JLabel("Executive Rooms");
@@ -66,6 +66,8 @@ public class HRSview {
         this.guestName = new JTextField();
         this.guestName.setColumns(10);
         
+        this.DPadj = new JButton("Date Price Modifier");
+        this.DPadj.setPreferredSize(new Dimension(220, 30));
 
         // this.mainFrame.add(title);
         
@@ -86,6 +88,7 @@ public class HRSview {
         this.mainFrame.add(viewHotelAd);
         this.mainFrame.add(ManageHotel);
         this.mainFrame.add(Book);
+        this.mainFrame.add(DPadj);
     }
     public void setsorf(String text){
         this.s_or_f.setText(text);
@@ -116,5 +119,8 @@ public class HRSview {
     }
     public void setactionListener4(ActionListener actionListener){
         this.Book.addActionListener(actionListener);
+    }
+    public void setactionListener5(ActionListener actionListener){
+        this.DPadj.addActionListener(actionListener);
     }
 }

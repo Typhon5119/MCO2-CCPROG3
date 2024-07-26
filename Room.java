@@ -10,7 +10,7 @@ public class Room {
     /**
      * base price of room per night
      */
-    private float basePrice;
+    protected double basePrice;
     
     /**
      * room constructor
@@ -65,7 +65,7 @@ public class Room {
      * returns the base price of the room
      * @return base price of room
      */
-    public float getBasePrice(){
+    public double getBasePrice(){
 
         return this.basePrice;
 

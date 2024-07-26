@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  * Represents a hotel
@@ -13,13 +14,13 @@ public class Hotel{
      * rooms of the hotel
      */
     private ArrayList<Room> rooms = new ArrayList<>();
-    // private ArrayList<Deluxe> Drooms = new ArrayList<>();
-    // private ArrayList<Executive> Erooms = new ArrayList<>();
+    
     /**
      * list of reservations in a hotel
      */
     private ArrayList<Reservation> reservationList = new ArrayList<>();
-
+    private ArrayList<Integer> priceAdjDay = new ArrayList<>();
+    private ArrayList<Integer> priceAdjPercent = new ArrayList<>();
     /**
      * hotel constructor that creates a new hotel object
      * @param name name of hotel
@@ -140,6 +141,24 @@ public class Hotel{
                 || (j == reservationList.size() && rType == 1 && rooms.get(i) instanceof Deluxe)
                 || (j == reservationList.size() && rType == 2 && rooms.get(i) instanceof Executive)){
                 Reservation temp = new Reservation(guestName, startDate, endDate, rooms.get(i));
+                // adjust price based on date price modifier
+                StringTokenizer st = new StringTokenizer(startDate, "/");
+                int firstDay = Integer.parseInt(st.nextToken());
+                StringTokenizer st2 = new StringTokenizer(endDate, "/");
+                int lastDay = Integer.parseInt(st2.nextToken());
+                int cost = 0;
+                
+                for(int x = firstDay; x < lastDay; x++){
+                    if (AdjustedDayIndex(x, priceAdjDay) != -1){
+                        cost += rooms.get(i).getBasePrice() * priceAdjPercent.get(AdjustedDayIndex(x, priceAdjDay));
+                    }
+                    else {
+                        cost += rooms.get(i).getBasePrice();
+                    }
+                }
+                temp.setTotalCost(cost);
+            
+                //-----
                 if (pCode.equals("I_WORK_HERE")){
                     
                     double newCost = temp.getTotalCost() * .90;
@@ -202,7 +221,7 @@ public class Hotel{
     public String displayHotel(){
         String hotelinfoString = "";
         hotelinfoString += this.name + ":" + "\n";
-        hotelinfoString += "Base Price: " + Float.toString(this.rooms.get(0).getBasePrice()) + "\n";
+        hotelinfoString += "Base Price: " + Double.toString(this.rooms.get(0).getBasePrice()) + "\n";
         hotelinfoString += Integer.toString(this.rooms.size()) + " Rooms" + "\n";
 
         float totalEarnings = 0;
@@ -346,6 +365,19 @@ public class Hotel{
 
         }
 
+    }
+    public void addPriceAdj(int day, int percent){
+        System.out.println("real");
+        priceAdjDay.add(day);
+        priceAdjPercent.add(percent);
+    }
+
+    private int AdjustedDayIndex(int day, ArrayList<Integer> priceAdjDay){
+        for (int j = 0; j < priceAdjDay.size(); j++){
+            if (day == priceAdjDay.get(j))
+                return j;
+        }
+        return -1;
     }
 
 }

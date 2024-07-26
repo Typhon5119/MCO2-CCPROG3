@@ -52,6 +52,13 @@ public class HRScontroller {
                 BookController bookController = new BookController(bookView, model);
             }
         });
+        this.view.setactionListener5(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                DPAchoose dpaView = new DPAchoose();
+                DPAcontroller dpAcontroller = new DPAcontroller(dpaView, model);
+            }
+        });
         this.view.addComponents();
         
 
