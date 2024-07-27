@@ -15,10 +15,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 public class DPAchoose {
-    JFrame DPAframe;
-    JLabel day, percentage;
-    JTextField dayTextField, percentTextField;
-    ArrayList<JButton> buttons = new ArrayList<>();
+    private JFrame DPAframe;
+    private JLabel day, percentage, failed2ad;
+    private JTextField dayTextField, percentTextField;
+    private ArrayList<JButton> buttons = new ArrayList<>();
     public DPAchoose(){
         this.DPAframe = new JFrame();
         this.DPAframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -27,6 +27,9 @@ public class DPAchoose {
         this.day.setText("day             ");
         // this.day.setPreferredSize(new Dimension(500, 500));
         
+        this.failed2ad = new JLabel();
+        this.failed2ad.setVisible(false);
+
         this.dayTextField = new JTextField();
         this.dayTextField.setColumns(10);
         this.percentage = new JLabel("price rate   ");
@@ -41,12 +44,17 @@ public class DPAchoose {
         this.DPAframe.add(dayTextField);
         this.DPAframe.add(percentage);
         this.DPAframe.add(percentTextField);
+        this.DPAframe.add(failed2ad);
+    }
+    public void failed(){
+        this.failed2ad.setText("Invalid input");
+        this.failed2ad.setVisible(true);
     }
     public String getDay(){
-        return this.day.getText();
+        return this.dayTextField.getText();
     }
     public String getPercent(){
-        return this.percentage.getText();
+        return this.percentTextField.getText();
     }
     public void addButton(JButton addButton){
         buttons.add(addButton);

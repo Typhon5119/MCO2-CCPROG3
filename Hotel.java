@@ -146,11 +146,11 @@ public class Hotel{
                 int firstDay = Integer.parseInt(st.nextToken());
                 StringTokenizer st2 = new StringTokenizer(endDate, "/");
                 int lastDay = Integer.parseInt(st2.nextToken());
-                int cost = 0;
+                double cost = 0;
                 
                 for(int x = firstDay; x < lastDay; x++){
                     if (AdjustedDayIndex(x, priceAdjDay) != -1){
-                        cost += rooms.get(i).getBasePrice() * priceAdjPercent.get(AdjustedDayIndex(x, priceAdjDay));
+                        cost += rooms.get(i).getBasePrice() * (priceAdjPercent.get(AdjustedDayIndex(x, priceAdjDay)) * .01);
                     }
                     else {
                         cost += rooms.get(i).getBasePrice();
@@ -367,9 +367,15 @@ public class Hotel{
 
     }
     public void addPriceAdj(int day, int percent){
-        System.out.println("real");
-        priceAdjDay.add(day);
-        priceAdjPercent.add(percent);
+        
+        if (AdjustedDayIndex(day, priceAdjDay) == -1) {
+            priceAdjDay.add(day);
+            priceAdjPercent.add(percent);
+        }
+        else{
+            priceAdjPercent.set(AdjustedDayIndex(day, priceAdjDay), percent);
+        }
+        
     }
 
     private int AdjustedDayIndex(int day, ArrayList<Integer> priceAdjDay){

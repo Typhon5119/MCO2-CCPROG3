@@ -15,10 +15,11 @@ public class HRSmodel {
         if (nErooms.equals("")){
             nErooms = "0";
         }
-        int totRooms = Integer.parseInt(nRooms) + Integer.parseInt(nDrooms) + Integer.parseInt(nErooms);
         boolean res = false;
         try{
-        if (totRooms >= 0 && totRooms <= 50){
+        int totRooms = Integer.parseInt(nRooms) + Integer.parseInt(nDrooms) + Integer.parseInt(nErooms);
+        
+        if (totRooms >= 1 && totRooms <= 50){
             ArrayList <Room> rooms = new ArrayList<>();
             // name should be unique
             boolean isNameUnique = true;
