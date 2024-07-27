@@ -19,6 +19,8 @@ public class DPAchoose {
     private JLabel day, percentage, failed2ad;
     private JTextField dayTextField, percentTextField;
     private ArrayList<JButton> buttons = new ArrayList<>();
+    private JTextArea textArea = new JTextArea(20, 20);
+    private JScrollPane scrollPane;
     public DPAchoose(){
         this.DPAframe = new JFrame();
         this.DPAframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -26,7 +28,8 @@ public class DPAchoose {
         this.day = new JLabel();
         this.day.setText("day             ");
         // this.day.setPreferredSize(new Dimension(500, 500));
-        
+        // this.textArea.setPreferredSize(new Dimension(220, 140));
+        this.textArea.setEditable(false);
         this.failed2ad = new JLabel();
         this.failed2ad.setVisible(false);
 
@@ -35,6 +38,7 @@ public class DPAchoose {
         this.percentage = new JLabel("price rate   ");
         this.percentTextField = new JTextField();
         this.percentTextField.setColumns(10);
+        this.scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 		this.DPAframe.setSize(250, 1000);
         this.DPAframe.setVisible(true);
@@ -45,6 +49,11 @@ public class DPAchoose {
         this.DPAframe.add(percentage);
         this.DPAframe.add(percentTextField);
         this.DPAframe.add(failed2ad);
+        this.DPAframe.add(scrollPane);
+        
+    }
+    public void updateTextArea(String info){
+        this.textArea.setText(info);
     }
     public void failed(){
         this.failed2ad.setText("Invalid input");

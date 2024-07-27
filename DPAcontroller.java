@@ -52,6 +52,15 @@ public class DPAcontroller {
                 
             }
         };
+        String info = "";
+        
+        for (int j = 0; j < model.getHotellist().size(); j++){
+            if (model.getHotellist().get(j).getpriceAdjdays().size() > 0){
+                info += model.getHotellist().get(j).getName() + "\nmodification/s: \n";
+                info += model.getHotellist().get(j).getModifications() + "\n";
+            }
+        }
+        dpaView.updateTextArea(info);
         dpaView.addComponents();
         dpaView.addAL(a);
         

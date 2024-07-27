@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -389,6 +388,19 @@ public class Hotel{
             priceAdjPercent.set(AdjustedDayIndex(day, priceAdjDay), percent);
         }
         
+    }
+
+    public ArrayList<Integer> getpriceAdjdays(){
+        return this.priceAdjDay;
+    }
+
+    public String getModifications(){
+        String info = "";
+        for (int i = 0; i < priceAdjDay.size(); i++){
+            info += "day " +  Integer.toString(priceAdjDay.get(i));
+            info += " - " + Integer.toString(priceAdjPercent.get(i)) + "%" + "\n";
+        }
+        return info;
     }
 
     private int AdjustedDayIndex(int day, ArrayList<Integer> priceAdjDay){
