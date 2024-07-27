@@ -59,6 +59,13 @@ public class HRScontroller {
                 DPAcontroller dpAcontroller = new DPAcontroller(dpaView, model);
             }
         });
+        this.view.setALvHad2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                AvailRoomsView availRoomsView = new AvailRoomsView();
+                AvailRoomsCntr availRoomsCntr = new AvailRoomsCntr(availRoomsView, model);
+            }
+        });
         this.view.addComponents();
         
 

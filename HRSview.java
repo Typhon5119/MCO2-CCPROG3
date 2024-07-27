@@ -12,16 +12,19 @@ import java.awt.event.ActionListener;
 
 public class HRSview {
     private JFrame mainFrame;
-    private JButton addHotel, viewHotel, viewHotelAd;
+    private JButton addHotel, viewHotel, viewHotelAd, viewHad2;
     private JButton ManageHotel, Book, DPadj;
     private JLabel title, s_or_f, HnameLabel, nRoomsLabel, nDRoomsLabel, nERoomsLabel;
-    private JTextField HName, nRooms, guestName,  nDRoomsTextF, nERoomsTextF;
+    private JTextField HName, nRooms, guestName, nDRoomsTextF, nERoomsTextF;
     public HRSview(){
         this.mainFrame = new JFrame("HRS");
 
         this.nDRoomsLabel = new JLabel("Deluxe Rooms");
         this.nERoomsLabel = new JLabel("Executive Rooms");
-        
+
+        this.viewHad2 = new JButton("Available Rooms (Based on date)");
+        this.viewHad2.setPreferredSize(new Dimension(220, 30));
+
         this.nDRoomsTextF = new JTextField();
         this.nDRoomsTextF.setColumns(5);
 
@@ -86,6 +89,7 @@ public class HRSview {
         this.mainFrame.add(s_or_f);
         this.mainFrame.add(viewHotel);
         this.mainFrame.add(viewHotelAd);
+        this.mainFrame.add(viewHad2);
         this.mainFrame.add(ManageHotel);
         this.mainFrame.add(Book);
         this.mainFrame.add(DPadj);
@@ -122,5 +126,8 @@ public class HRSview {
     }
     public void setactionListener5(ActionListener actionListener){
         this.DPadj.addActionListener(actionListener);
+    }
+    public void setALvHad2(ActionListener a){
+        this.viewHad2.addActionListener(a);
     }
 }
