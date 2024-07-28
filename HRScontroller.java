@@ -42,7 +42,7 @@ public class HRScontroller {
         this.view.setactionListener3(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                System.out.println("Manage");
+                // put code here
             }
         });
         this.view.setactionListener4(new ActionListener() {
