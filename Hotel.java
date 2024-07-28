@@ -146,13 +146,19 @@ public class Hotel{
                 StringTokenizer st2 = new StringTokenizer(endDate, "/");
                 int lastDay = Integer.parseInt(st2.nextToken());
                 double cost = 0;
+                double firstDayCost = 0;
                 
                 for(int x = firstDay; x < lastDay; x++){
-                    if (AdjustedDayIndex(x, priceAdjDay) != -1){
+                    if (AdjustedDayIndex(x, priceAdjDay) != -1){ // if there is a price modifier on the day, apply
                         cost += rooms.get(i).getBasePrice() * (priceAdjPercent.get(AdjustedDayIndex(x, priceAdjDay)) * .01);
+                        
                     }
                     else {
                         cost += rooms.get(i).getBasePrice();
+                    }
+
+                    if (x == firstDay){ // get the cost of the first day to be used in promo code 
+                        firstDayCost = cost;
                     }
                 }
                 temp.setTotalCost(cost);
@@ -165,7 +171,13 @@ public class Hotel{
                 }
                 if (pCode.equals("STAY4-GET1")){
                     if (temp.getLengthOfStay() + 1 >= 5)
-                        temp.setTotalCost(temp.getTotalCost() - temp.getCostPerNight());
+                        temp.setTotalCost(temp.getTotalCost() - firstDayCost);
+                }
+                if (pCode.equals("PAYDAY")){
+                    if ( (firstDay <= 15 && lastDay > 15) || (firstDay <= 30 && lastDay > 30)){
+                        double newCost = temp.getTotalCost() * .93;
+                        temp.setTotalCost(newCost);
+                    }
                 }
                 
                 reservationList.add(temp);
