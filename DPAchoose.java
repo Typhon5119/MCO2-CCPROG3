@@ -3,6 +3,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JPanel;
@@ -21,6 +22,7 @@ public class DPAchoose {
     private ArrayList<JButton> buttons = new ArrayList<>();
     private JTextArea textArea = new JTextArea(20, 20);
     private JScrollPane scrollPane;
+    private JPanel panel;
     public DPAchoose(){
         this.DPAframe = new JFrame();
         this.DPAframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -39,7 +41,8 @@ public class DPAchoose {
         this.percentTextField = new JTextField();
         this.percentTextField.setColumns(10);
         this.scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
+        this.panel = new JPanel();
+        this.panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		this.DPAframe.setSize(250, 1000);
         this.DPAframe.setVisible(true);
     }
@@ -80,8 +83,12 @@ public class DPAchoose {
     }
     public void showButtons(){
         for (int i = 0; i < buttons.size(); i++){
-            this.DPAframe.add(buttons.get(i));
+            this.panel.add(buttons.get(i));
+            
         }
+        JScrollPane scroll = new JScrollPane(panel);
+        scroll.setPreferredSize(new Dimension(225, 200));
+        this.DPAframe.add(scroll);
     }
     public void closeframe(){
         this.DPAframe.dispose();

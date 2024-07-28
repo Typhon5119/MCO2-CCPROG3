@@ -2,6 +2,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.JPanel;
@@ -19,11 +20,12 @@ public class BookView {
     private JButton s, d, e;
     private JTextField guestName, checkInField, checkOuTextField, pCodeField;
     private JLabel guestnamLabel, checkinLabel, checkoutLabel, pCodeLabel;
+    private JPanel panel;
     public BookView(){
         Bookframe = new JFrame();
         this.Bookframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.Bookframe.setLayout(new FlowLayout(FlowLayout.LEADING));
-        this.Bookframe.setSize(250, 1000);
+        this.Bookframe.setSize(250, 600);
 
         this.checkInField = new JTextField();
         this.checkInField.setColumns(10);
@@ -51,6 +53,8 @@ public class BookView {
         this.pCodeField = new JTextField();
         this.pCodeField.setColumns(10);
 
+        this.panel = new JPanel();
+        this.panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         this.Bookframe.setVisible(true);
     }
     public String getGuestName(){
@@ -98,8 +102,11 @@ public class BookView {
     }
     public void showButtons(){
         for (int i = 0; i < hotelButtons.size(); i++){
-            this.Bookframe.add(hotelButtons.get(i));
+            this.panel.add(hotelButtons.get(i));
         }
+        JScrollPane scroll = new JScrollPane(panel);
+        scroll.setPreferredSize(new Dimension(225, 200));
+        this.Bookframe.add(scroll);
     }
     public void markS(){
         this.s.setBackground(Color.GREEN);
