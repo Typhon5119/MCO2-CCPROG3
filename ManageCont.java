@@ -1,3 +1,6 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
 public class ManageCont {
@@ -9,6 +12,21 @@ public class ManageCont {
         for (int i = 0; i < model.getHotellist().size(); i++){
             view.addButton( new JButton(model.getHotellist().get(i).getName()));
         }
+
+        view.addAL2buttons(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                view.unmarkAll();
+                view.mark( (JButton)  e.getSource());
+            }
+        });
+
+        view.addAL1(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                
+            }
+        });
 
         view.showButtons();
     }
