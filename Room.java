@@ -71,4 +71,18 @@ public class Room {
 
     }
 
+    public double getTrueBaseP(){
+        double BP;
+        if (this instanceof Deluxe){   
+            BP = basePrice / (1 + .20); 
+        }
+        else if (this instanceof Executive){   
+            BP = basePrice / (1 + .35);
+        }
+        else{
+            BP = basePrice;
+        }
+        return BP;
+    }
+
 }

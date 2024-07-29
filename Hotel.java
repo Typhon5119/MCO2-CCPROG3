@@ -230,20 +230,10 @@ public class Hotel{
      * displays the hotel information
      */
     public String displayHotel(){
-        double BP;
-        // the real base price without taking into account room types will be displayed in the text box
-        if (this.rooms.get(0) instanceof Deluxe){   
-            BP = this.rooms.get(0).getBasePrice() / (1 + .20); 
-        }
-        else if (this.rooms.get(0) instanceof Executive){   
-            BP = this.rooms.get(0).getBasePrice() / (1 + .35);
-        }
-        else{
-            BP = this.rooms.get(0).getBasePrice();
-        }
+        
         String hotelinfoString = "";
         hotelinfoString += this.name + ":" + "\n";
-        hotelinfoString += "Base Price: " + Double.toString(BP) + "\n";
+        hotelinfoString += "Base Price: " + Double.toString(this.rooms.get(0).getTrueBaseP()) + "\n";
         hotelinfoString += Integer.toString(this.rooms.size()) + " Rooms" + "\n";
 
         float totalEarnings = 0;

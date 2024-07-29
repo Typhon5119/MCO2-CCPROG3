@@ -43,6 +43,8 @@ public class HRScontroller {
             @Override
             public void actionPerformed(ActionEvent e){
                 // put code here
+                ManageView manageView = new ManageView();
+                ManageCont manageCont = new ManageCont(manageView, model);
             }
         });
         this.view.setactionListener4(new ActionListener() {
