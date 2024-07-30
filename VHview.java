@@ -13,14 +13,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 public class VHview {
-    private HRSmodel hrSmodel;
+    // private HRSmodel hrSmodel;
     private JFrame viewFrame;
-    private ArrayList<JButton> buttons = new ArrayList<>();
    
     private JTextArea viewArea;
-    public VHview(HRSmodel hrSmodel){
+    public VHview(){
         
-        this.hrSmodel = hrSmodel;
+        // this.hrSmodel = hrSmodel;
         this.viewFrame = new JFrame("Hotels");
         this.viewFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.viewFrame.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -28,25 +27,27 @@ public class VHview {
         
         this.viewArea = new JTextArea(30, 50);
         
-        // this.viewArea.setMinimumSize(new Dimension(500, 500));
-        String text = "";
-        for (int i = 0; i < hrSmodel.getHotellist().size(); i++){
-            text += hrSmodel.getHotellist().get(i).displayHotel();
-        }
-        JScrollPane scrollPane = new JScrollPane(viewArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        viewArea.setText(text);
+        
+        
         
         this.viewFrame.setSize(500, 600);
         
-        this.viewArea.setEditable(false);
+        
 
         
         
         
         viewArea.setWrapStyleWord(true);
-        this.viewFrame.add(scrollPane);
+        
         
         this.viewFrame.setVisible(true);
+    }
+
+    public void addComponent(String text){
+        JScrollPane scrollPane = new JScrollPane(viewArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        this.viewArea.setText(text);
+        this.viewFrame.add(scrollPane);
+        this.viewArea.setEditable(false);
     }
     
 }

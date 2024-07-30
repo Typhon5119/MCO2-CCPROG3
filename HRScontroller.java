@@ -27,9 +27,10 @@ public class HRScontroller {
             @Override
             public void actionPerformed(ActionEvent e){
                 
-                VHview vhview = new VHview(model); 
+                VHview vhview = new VHview();
+                VHcont vhCont = new VHcont(model, vhview); 
                 
-                System.out.println(model.getHotellist().get(0).getName());
+                
             }
         });
         this.view.setactionListenerAd(new ActionListener() {
