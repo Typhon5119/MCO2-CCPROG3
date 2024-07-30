@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -17,6 +19,7 @@ public class ManageView {
     private JPanel panel;
     private JButton changeName, addRoom, removeRoom, updBP, rResrvation, rHotel;
     private JTextField newName;
+    private JTextArea textArea= new JTextArea();
 
     public ManageView(){
         this.ManageFrame = new JFrame("Manage Hotels");
@@ -50,6 +53,8 @@ public class ManageView {
         this.panel = new JPanel();
         this.panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
+        this.textArea = new JTextArea(10, 25);
+
 
         this.ManageFrame.setVisible(true);
     }
@@ -62,6 +67,9 @@ public class ManageView {
         }
         JScrollPane scroll = new JScrollPane(panel);
         scroll.setPreferredSize(new Dimension(225, 200));
+
+        JScrollPane scroll2 = new JScrollPane(textArea);
+        
         this.ManageFrame.add(scroll);
         this.ManageFrame.add(newName);
         this.ManageFrame.add(changeName);
@@ -70,6 +78,7 @@ public class ManageView {
         this.ManageFrame.add(updBP);
         this.ManageFrame.add(rResrvation);
         this.ManageFrame.add(rHotel);
+        this.ManageFrame.add(scroll2);
     }
 
     public void mark(JButton button){
@@ -128,13 +137,13 @@ public class ManageView {
 
     public ArrayList<JButton> getButtons(){
 
-        return this.buttons;    
+        return this.buttons;
 
     }
 
-    public JFrame getMainFrame(){
-
-        return this.ManageFrame;
-
+    public void setTfield(String info){
+        this.textArea.setText(info);
     }
+
+   
 }

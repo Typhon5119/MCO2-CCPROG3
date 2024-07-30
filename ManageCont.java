@@ -115,14 +115,17 @@ public class ManageCont {
     }
 
     private void printRoomReservationsGUI(int markedIndex){
-
+        String info = "";
         for (int i = 0, j = 1; i < model.getHotellist().get(markedIndex).getReservationList().size(); i++){
-
-            JLabel info = new JLabel(model.getHotellist().get(markedIndex).printRoomReservations(i));
-            view.getMainFrame().add(info);
+            info += Integer.toString(i + 1) + ". ";
+            info += model.getHotellist().get(markedIndex).printRoomReservations(i) + "";
+            info += model.getHotellist().get(markedIndex).getRooms().get(i).getName() + "\n";
 
         }
 
+        view.setTfield(info);
+
+        
     }
 
     private void printRoomReservationsGUI(int markedIndex, String key){
