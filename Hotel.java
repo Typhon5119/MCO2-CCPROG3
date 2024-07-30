@@ -1,5 +1,5 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 /**
  * Represents a hotel
@@ -12,18 +12,20 @@ public class Hotel{
     /**
      * rooms of the hotel
      */
-    private RoomList rooms;
+    private ArrayList<Room> rooms = new ArrayList<>();
+    
     /**
      * list of reservations in a hotel
      */
     private ArrayList<Reservation> reservationList = new ArrayList<>();
-
+    private ArrayList<Integer> priceAdjDay = new ArrayList<>();
+    private ArrayList<Integer> priceAdjPercent = new ArrayList<>();
     /**
      * hotel constructor that creates a new hotel object
      * @param name name of hotel
      * @param rooms rooms of hotel
      */
-    public Hotel(String name, RoomList rooms){
+    public Hotel(String name, ArrayList<Room> rooms){
 
         this.name = name;
         this.rooms = rooms;
@@ -33,20 +35,11 @@ public class Hotel{
      * adds a room to the hotel
      * @param room room to add
      */
-    public void addRoom(Standard room, int typeOfRoom){
+    public void addRoom(Room room){
 
-        if (rooms.getSize() < 50){
+        if (rooms.size() < 50){
 
-            switch(typeOfRoom){
-
-                case 1: rooms.Srooms.add(room);
-                break;
-                case 2: rooms.Drooms.add((Deluxe) room);
-                break;
-                case 3: rooms.Erooms.add((Executive)room);
-                break;
-
-            }
+            rooms.add(room);
 
         } else {
 
@@ -59,21 +52,10 @@ public class Hotel{
      * deletes a room from the hotel
      * @param index index of room to delete
      */
-    public void deleteRoom(int index, int typeOfRoom){
+    public void deleteRoom(int index){
+        if (rooms.size() > 1){
 
-
-        if (rooms.getSize() > 1){
-
-            switch(typeOfRoom){
-
-                case 1: this.rooms.Srooms.remove(index);
-                break;
-                case 2: this.rooms.Drooms.remove(index);
-                break;
-                case 3: this.rooms.Erooms.remove(index);
-                break;
-
-            }
+            rooms.remove(index);
 
         } else {
             
@@ -86,24 +68,11 @@ public class Hotel{
      */
     public void setRoomsNameAuto(){
 
-        for (int i = 0; i < this.rooms.Srooms.size(); i++){
+        for (int i = 0; i < this.rooms.size(); i++){
 
-            this.rooms.Srooms.get(i).setName("Standard Room " + Integer.toString(i + 1));
-
-        }
-
-        for (int i = 0; i < this.rooms.Drooms.size(); i++){
-
-            this.rooms.Drooms.get(i).setName("Deluxe Room " + Integer.toString(i + 1));
+            this.rooms.get(i).setName("Room " + Integer.toString(i + 1));
 
         }
-
-        for (int i = 0; i < this.rooms.Erooms.size(); i++){
-
-            this.rooms.Erooms.get(i).setName("Executive Room " + Integer.toString(i + 1));
-
-        }
-
 
     }
     /**
@@ -113,7 +82,7 @@ public class Hotel{
      * @param guestName name of guest booking
      * @return name of room assigned to guest
      */
-    public String findRoom(String startDate, String endDate, String guestName, String pCode){
+    public String findRoom(String startDate, String endDate, String guestName, String pCode, int rType){
         int j;
         for (int i = 0; i < rooms.size(); i++){
             for (j = 0; j < reservationList.size(); j++){
@@ -167,8 +136,34 @@ public class Hotel{
                     }
                 }
             }
-            if (j == reservationList.size()){
+            if ((j == reservationList.size() && rType == 0 && ((rooms.get(i) instanceof Deluxe == false) && (rooms.get(i) instanceof Executive) == false))
+                || (j == reservationList.size() && rType == 1 && rooms.get(i) instanceof Deluxe)
+                || (j == reservationList.size() && rType == 2 && rooms.get(i) instanceof Executive)){
                 Reservation temp = new Reservation(guestName, startDate, endDate, rooms.get(i));
+                // adjust price based on date price modifier
+                StringTokenizer st = new StringTokenizer(startDate, "/");
+                int firstDay = Integer.parseInt(st.nextToken());
+                StringTokenizer st2 = new StringTokenizer(endDate, "/");
+                int lastDay = Integer.parseInt(st2.nextToken());
+                double cost = 0;
+                double firstDayCost = 0;
+                
+                for(int x = firstDay; x < lastDay; x++){
+                    if (AdjustedDayIndex(x, priceAdjDay) != -1){ // if there is a price modifier on the day, apply
+                        cost += rooms.get(i).getBasePrice() * (priceAdjPercent.get(AdjustedDayIndex(x, priceAdjDay)) * .01);
+                        
+                    }
+                    else {
+                        cost += rooms.get(i).getBasePrice();
+                    }
+
+                    if (x == firstDay){ // get the cost of the first day to be used in promo code 
+                        firstDayCost = cost;
+                    }
+                }
+                temp.setTotalCost(cost);
+            
+                //-----
                 if (pCode.equals("I_WORK_HERE")){
                     
                     double newCost = temp.getTotalCost() * .90;
@@ -176,7 +171,13 @@ public class Hotel{
                 }
                 if (pCode.equals("STAY4-GET1")){
                     if (temp.getLengthOfStay() + 1 >= 5)
-                        temp.setTotalCost(temp.getTotalCost() - temp.getCostPerNight());
+                        temp.setTotalCost(temp.getTotalCost() - firstDayCost);
+                }
+                if (pCode.equals("PAYDAY")){
+                    if ( (firstDay <= 15 && lastDay > 15) || (firstDay <= 30 && lastDay > 30)){
+                        double newCost = temp.getTotalCost() * .93;
+                        temp.setTotalCost(newCost);
+                    }
                 }
                 
                 reservationList.add(temp);
@@ -186,29 +187,16 @@ public class Hotel{
         return "Cannot find room";
     }
 
+
     /**
      * changes base price of all rooms
      * @param basePrice new base price
      */
     public void setRoomsPrice(float basePrice){
 
-        for(int i = 0; i < this.rooms.Srooms.size(); i++){
+        for(int i = 0; i < this.rooms.size(); i++){
 
-            this.rooms.Srooms.get(i).setBasePrice(basePrice);
-
-        }
-
-        for(int i = 0; i < this.rooms.Drooms.size(); i++){
-
-            this.rooms.Drooms.get(i).setBasePrice(basePrice);
-            this.rooms.Drooms.get(i).adjustRoomPrice();
-
-        }
-
-        for(int i = 0; i < this.rooms.Erooms.size(); i++){
-
-            this.rooms.Erooms.get(i).setBasePrice(basePrice);
-            this.rooms.Drooms.get(i).adjustRoomPrice();
+            this.rooms.get(i).setBasePrice(basePrice);
 
         }
 
@@ -222,8 +210,6 @@ public class Hotel{
         return this.name;
 
     }
-
-
     /**
      * changes the name of the hotel
      * @param newName new name
@@ -244,10 +230,11 @@ public class Hotel{
      * displays the hotel information
      */
     public String displayHotel(){
+        
         String hotelinfoString = "";
         hotelinfoString += this.name + ":" + "\n";
-        hotelinfoString += "Base Price: " + Float.toString(this.rooms.Srooms.get(0).getBasePrice()) + "\n";
-        hotelinfoString += Integer.toString(this.rooms.getSize()) + " Rooms" + "\n";
+        hotelinfoString += "Base Price: " + Double.toString(this.rooms.get(0).getTrueBaseP()) + "\n";
+        hotelinfoString += Integer.toString(this.rooms.size()) + " Rooms" + "\n";
 
         float totalEarnings = 0;
 
@@ -273,21 +260,15 @@ public class Hotel{
      * displays the name of the rooms of the hotel
      */
     public void displayRooms(){
-        for (int i = 0; i < rooms.Srooms.size(); i++){
-            System.out.println(rooms.Srooms.get(i).getName());
-        }
-        for (int i = 0; i < rooms.Drooms.size(); i++) {
-            System.out.println(rooms.Drooms.get(i).getName());
-        }
-        for (int i = 0; i < rooms.Erooms.size(); i++) {
-            System.out.println(rooms.Erooms.get(i).getName());
+        for (int i = 0; i < rooms.size(); i++){
+            System.out.println(rooms.get(i).getName());
         }
     }
     /**
      * returns the rooms of the hotel
      * @return the rooms of the hotel
      */
-    public RoomList getRooms(){
+    public ArrayList<Room> getRooms(){
 
         return this.rooms;
 
@@ -301,11 +282,7 @@ public class Hotel{
 
         ArrayList <Reservation> tempReservations = new ArrayList<>(this.reservationList);
 
-        ArrayList <Standard> tempRooms = new ArrayList<>(this.rooms.Srooms);
-        tempRooms.addAll(rooms.Drooms);
-        tempRooms.addAll(rooms.Erooms);
-        
-
+        ArrayList <Room> tempRooms = new ArrayList<>(this.rooms);
 
         for (int i = 0; i < tempReservations.size(); i++){
             
@@ -326,10 +303,33 @@ public class Hotel{
 
                 }
 
-      
+//                tempReservations.remove(i);
+//                i--;
+
             }
 
         }
+
+   /*      for (int i = 0; i < tempReservations.size(); i++){
+
+            tempRooms.add(tempReservations.get(i).getRoom());
+
+        }
+        
+        for (int i = 0; i < tempRooms.size(); i++){
+
+            for (int j = i + 1; j < tempRooms.size(); i++){
+
+                if (tempRooms.get(i).getName().equals(tempRooms.get(j).getName())){
+
+                    tempRooms.remove(j);
+
+                }
+
+            }
+
+        } */
+
         return tempRooms.size();
 
     }
@@ -340,7 +340,7 @@ public class Hotel{
      */
     public int getBookedRooms(String date){
 
-        return this.rooms.getSize() - this.getAvailableRooms(date);
+        return this.rooms.size() - this.getAvailableRooms(date);
 
     }
 
@@ -365,22 +365,52 @@ public class Hotel{
      * displays the reservations of a room
      * @param index index of room in rooms
      */
-    public void printRoomReservations(int index){
-
-        ArrayList <Standard> tempRooms = new ArrayList<>(rooms.Srooms);
-        tempRooms.addAll(rooms.Drooms);
-        tempRooms.addAll(rooms.Erooms); 
-
+    public String printRoomReservations(int index){
+        String info = "";
         for (int i = 0; i < this.reservationList.size(); i++){
 
-            if (tempRooms.get(index).getName().equals(this.reservationList.get(i).getRoom().getName())){
+            if (this.rooms.get(index).getName().equals(this.reservationList.get(i).getRoom().getName())){
 
-                System.out.println(this.reservationList.get(i).getCheckIn() + " - " + this.reservationList.get(i).getCheckOut());
+                info += "Reserved on: \n" + 
+                this.reservationList.get(i).getCheckIn() + " - " + 
+                this.reservationList.get(i).getCheckOut() + "\n";
 
             }
 
         }
+        return info;
+    }
+    public void addPriceAdj(int day, int percent){
+        
+        if (AdjustedDayIndex(day, priceAdjDay) == -1) {
+            priceAdjDay.add(day);
+            priceAdjPercent.add(percent);
+        }
+        else{
+            priceAdjPercent.set(AdjustedDayIndex(day, priceAdjDay), percent);
+        }
+        
+    }
 
+    public ArrayList<Integer> getpriceAdjdays(){
+        return this.priceAdjDay;
+    }
+
+    public String getModifications(){
+        String info = "";
+        for (int i = 0; i < priceAdjDay.size(); i++){
+            info += "day " +  Integer.toString(priceAdjDay.get(i));
+            info += " - " + Integer.toString(priceAdjPercent.get(i)) + "%" + "\n";
+        }
+        return info;
+    }
+
+    private int AdjustedDayIndex(int day, ArrayList<Integer> priceAdjDay){
+        for (int j = 0; j < priceAdjDay.size(); j++){
+            if (day == priceAdjDay.get(j))
+                return j;
+        }
+        return -1;
     }
 
 }

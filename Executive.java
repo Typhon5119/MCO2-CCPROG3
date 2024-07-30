@@ -1,18 +1,12 @@
-public class Executive extends Standard{
-    private double finalPrice;
+public class Executive extends Room{
+    private double finalBPrice;
     public Executive(){
         super();
-        finalPrice = this.getBasePrice() + (this.getBasePrice() * .35);
+        finalBPrice = this.getBasePrice() + (this.getBasePrice() * .35);
+        this.basePrice = finalBPrice;
     }
-
-    public void adjustRoomPrice(){
-
-        finalPrice = this.getBasePrice() + (this.getBasePrice() * .20);
-
-    }
-
     public double getFinalBP(){
-        return this.finalPrice;
+        return this.finalBPrice;
     }
 }
     

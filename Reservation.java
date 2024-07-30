@@ -17,7 +17,7 @@ public class Reservation {
     /**
      * room of reservation
      */
-    private final Standard room;
+    private final Room room;
 
     /**
      * total cost of reservation
@@ -74,14 +74,7 @@ public class Reservation {
      * returns the room
      * @return room
      */
-    public Standard getRoom(){
-
-        if (room instanceof Deluxe){
-            return ((Deluxe) room);
-        }
-        if (room instanceof Executive){
-            return ((Executive) room);
-        }
+    public Room getRoom(){
 
         return this.room;
 

@@ -12,7 +12,9 @@ public class HRScontroller {
             public void actionPerformed(ActionEvent e){
                 String name = view.getHNameText();
                 String nRooms = view.getnRooms();
-                boolean res = model.addHotel(name, nRooms);
+                String nDRooms = view.getnDrooms();
+                String nERooms = view.getnErooms();
+                boolean res = model.addHotel(name, nRooms, nDRooms, nERooms);
                 if (res){
                     view.setsorf("Added");
                 }
@@ -37,7 +39,36 @@ public class HRScontroller {
                 VHadController vHadController = new VHadController(vHadview, model);
             }
         });
-
+        this.view.setactionListener3(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                // put code here
+                ManageView manageView = new ManageView();
+                ManageCont manageCont = new ManageCont(manageView, model);
+            }
+        });
+        this.view.setactionListener4(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                BookView bookView = new BookView();
+                BookController bookController = new BookController(bookView, model);
+            }
+        });
+        this.view.setactionListener5(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                DPAchoose dpaView = new DPAchoose();
+                DPAcontroller dpAcontroller = new DPAcontroller(dpaView, model);
+            }
+        });
+        this.view.setALvHad2(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                AvailRoomsView availRoomsView = new AvailRoomsView();
+                AvailRoomsCntr availRoomsCntr = new AvailRoomsCntr(availRoomsView, model);
+            }
+        });
+        this.view.addComponents();
         
 
         }
