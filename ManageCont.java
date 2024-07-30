@@ -58,13 +58,13 @@ public class ManageCont {
                 
                 int markedIndex = view.getMarked();
                 
-                for (int i = 0; i < model.getHotellist().get(markedIndex).getRooms().size(); i++){
+                if(view.getTextField().getText().equals("")){
 
-                    if((model.getHotellist().get(markedIndex).getRooms().get(i).getName().equals(view.getTextField().getText()))){
+                    printRoomsGUI(markedIndex);
 
-                        model.getHotellist().get(markedIndex).getRooms().remove(i);
+                } else {
 
-                    }
+                    model.getHotellist().get(markedIndex).getRooms().get(Integer.parseInt(view.getTextField().getText()));
 
                 }
 
@@ -92,6 +92,8 @@ public class ManageCont {
 
                 if (view.getTextField().getText().equals("")){
                     printRoomReservationsGUI(markedIndex);
+                } else {
+                    model.getHotellist().get(markedIndex).getReservationList().remove(Integer.parseInt(view.getTextField().getText()));
                 }
             }
 
@@ -115,18 +117,20 @@ public class ManageCont {
     }
 
     private void printRoomReservationsGUI(int markedIndex){
-        String info = "";
-        for (int i = 0, j = 1; i < model.getHotellist().get(markedIndex).getReservationList().size(); i++){
-            info += Integer.toString(i + 1) + ". ";
-            info += model.getHotellist().get(markedIndex).printRoomReservations(i) + "";
-            info += model.getHotellist().get(markedIndex).getRooms().get(i).getName() + "\n";
-
+            String info = "";
+            for (int i = 0, j = 1; i < model.getHotellist().get(markedIndex).getReservationList().size(); i++){
+                info += Integer.toString(i + 1) + ". ";
+                info +=  model.getHotellist().get(markedIndex).getReservationList().get(i).getGuestName() + ":" + "\n";
+                info += "Room name: " +  model.getHotellist().get(markedIndex).getReservationList().get(i).getRoom().getName() + "\n";
+                info += model.getHotellist().get(markedIndex).getReservationList().get(i).getCheckIn() + "-";
+                info += model.getHotellist().get(markedIndex).getReservationList().get(i).getCheckOut() + "\n";
+    
+            }
+    
+            view.setTfield(info);
+    
+            
         }
-
-        view.setTfield(info);
-
-        
-    }
 
     private void printRoomReservationsGUI(int markedIndex, String key){
 
@@ -137,4 +141,21 @@ public class ManageCont {
         }
 
     }
+
+    private void printRoomsGUI(int markedIndex){
+
+        String info = "";
+
+        for(int i = 0; i < model.getHotellist().get(markedIndex).getRooms().size(); i++){
+
+            info += Integer.toString(i) + ". ";
+            info += model.getHotellist().get(markedIndex).getRooms().get(i).getName() + "\n";
+
+        }
+
+        view.setTfield(info);
+
+    }
+
+
 }
