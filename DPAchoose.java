@@ -1,20 +1,20 @@
-import javax.swing.JFrame;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
-import java.awt.FlowLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+/**
+ * View component of the date price modifier feature
+ */
 public class DPAchoose {
     private JFrame DPAframe;
     private JLabel day, percentage, failed2ad;
@@ -23,6 +23,9 @@ public class DPAchoose {
     private JTextArea textArea = new JTextArea(20, 20);
     private JScrollPane scrollPane;
     private JPanel panel;
+    /**
+     * Constructor
+     */
     public DPAchoose(){
         this.DPAframe = new JFrame();
         this.DPAframe.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -46,6 +49,9 @@ public class DPAchoose {
 		this.DPAframe.setSize(250, 1000);
         this.DPAframe.setVisible(true);
     }
+    /**
+     * Adds components of the frame
+     */
     public void addComponents(){
         this.DPAframe.add(day);
         this.DPAframe.add(dayTextField);
@@ -55,32 +61,62 @@ public class DPAchoose {
         this.DPAframe.add(scrollPane);
         
     }
+    /**
+     * updates the text area
+     * @param info the text to be updated into
+     */
     public void updateTextArea(String info){
         this.textArea.setText(info);
     }
+    /**
+     * function for invalid input
+     */
     public void failed(){
         this.failed2ad.setText("Invalid input");
         this.failed2ad.setVisible(true);
     }
+    /**
+     * gets the days
+     * @return day from the day text field
+     */
     public String getDay(){
         return this.dayTextField.getText();
     }
+    /**
+     * getter for the percent text field
+     * @return
+     */
     public String getPercent(){
         return this.percentTextField.getText();
     }
+    /**
+     * adds buttons
+     * @param addButton the button to be added
+     */
     public void addButton(JButton addButton){
         buttons.add(addButton);
     }
+    /**
+     * getter for the hotel name
+     * @param button the hotel button
+     * @return the hotel name
+     */
     public String getHname(JButton button){
         return button.getText();
     }
         
-    
+    /**
+     * adds action listenders to the buttons
+     * @param a
+     */
     public void addAL(ActionListener a){
         for (int i = 0; i < buttons.size(); i++){
             buttons.get(i).addActionListener(a);
         }
     }
+    /**
+     * adds the components to the frame
+     */
     public void showButtons(){
         for (int i = 0; i < buttons.size(); i++){
             this.panel.add(buttons.get(i));
@@ -90,6 +126,9 @@ public class DPAchoose {
         scroll.setPreferredSize(new Dimension(225, 200));
         this.DPAframe.add(scroll);
     }
+    /**
+     * closes the frame
+     */
     public void closeframe(){
         this.DPAframe.dispose();
     }

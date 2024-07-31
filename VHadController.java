@@ -3,9 +3,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+/**
+ * Controller component for the view hotel advanced feature
+ */
 public class VHadController {
     VHadview vHadview;
     HRSmodel hrSmodel;
+    /**
+     * feature
+     * @param vHadview view component
+     * @param hrSmodel model component
+     */
     public VHadController(VHadview vHadview, HRSmodel hrSmodel){
         this.vHadview = vHadview;
         this.hrSmodel = hrSmodel;

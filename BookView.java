@@ -1,19 +1,20 @@
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
-import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+/**
+ * View for the booking feature
+ */
 public class BookView {
     private JFrame Bookframe;
     private ArrayList<JButton> hotelButtons = new ArrayList<>();
@@ -57,18 +58,37 @@ public class BookView {
         this.panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         this.Bookframe.setVisible(true);
     }
+    /**
+     * getter for guest name
+     * @returns name of guest
+     */
     public String getGuestName(){
         return guestName.getText();
     }
+    /**
+     * getter for check in
+     * @return check in
+     */
     public String getCheckIn(){
         return checkInField.getText();
     }
+    /**
+     * getter for check out
+     * @return check out
+     */
     public String getCheckOut(){
         return checkOuTextField.getText();
     }
+    /**
+     * getter for promo code
+     * @return promo code
+     */
     public String getPCode(){
         return pCodeField.getText();
     }
+    /**
+     * function to add the text fields
+     */
     public void addTextFields(){
         this.Bookframe.add(guestnamLabel);
         this.Bookframe.add(guestName);
@@ -82,24 +102,52 @@ public class BookView {
         this.Bookframe.add(d);
         this.Bookframe.add(e);
     }
+    /**
+     * adds action listener to button
+     * @param actionListener the action listener
+     * @param button the button
+     */
     public void adALtoButton(ActionListener actionListener, JButton button){
         button.addActionListener(actionListener);
     }
+    /**
+     * adds button
+     * @param button2add
+     */
     public void addbutton(JButton button2add){
         hotelButtons.add(button2add);
     }
+    /**
+     * getter
+     * @returns the standard room button
+     */
     public JButton getS(){
         return this.s;
     }
+    /**
+     * getter
+     * @returns the deluxe room button
+     */
     public JButton getD(){
         return this.d;
     }
+    /**
+     * getter
+     * @returns the executive room button
+     */
     public JButton getE(){
         return this.e;
     }
+    /**
+     * getter
+     * @return the arraylist of buttons
+     */
     public ArrayList<JButton> getButtons(){
         return hotelButtons;
     }
+    /**
+     * shows buttons
+     */
     public void showButtons(){
         for (int i = 0; i < hotelButtons.size(); i++){
             this.panel.add(hotelButtons.get(i));
@@ -108,21 +156,39 @@ public class BookView {
         scroll.setPreferredSize(new Dimension(225, 200));
         this.Bookframe.add(scroll);
     }
+    /**
+     * changes standard button color to green
+     */
     public void markS(){
         this.s.setBackground(Color.GREEN);
     }
+    /**
+     * changes deluxe button color to green
+     */
     public void markD(){
         this.d.setBackground(Color.GREEN);
     }
+    /**
+     * changes executive button color to green
+     */
     public void markE(){
         this.e.setBackground(Color.GREEN);
     }
+    /**
+     * changes back standard button
+     */
     public void unMkS(){
         this.s.setBackground(new JButton().getBackground());
     }
+    /**
+     * changes back deluxe button
+     */
     public void unMkD(){
         this.d.setBackground(new JButton().getBackground());
     }
+    /**
+     * changes back executive button
+     */
     public void unMkE(){
         this.e.setBackground(new JButton().getBackground());
     }

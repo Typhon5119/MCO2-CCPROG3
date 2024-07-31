@@ -3,10 +3,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+/**
+ * 
+ * Controller for the booking feature
+ */
+
 public class BookController {
     private BookView bv;
     private HRSmodel hrSmodel;
     private int selectedRoomType = 0;
+
+    /**
+     * Constructor
+     * @param bv the view object
+     * @param hv the model object
+     */
     public BookController(BookView bv, HRSmodel hv){
         this.bv = bv;
         this.hrSmodel = hv;
@@ -121,6 +132,13 @@ public class BookController {
         //     bv.addbutton(temp);
         // }
     }
+    /**
+     * 
+     * function for telling if a date is before another date
+     * @param date1 
+     * @param date2
+     * @return
+     */
     private static boolean isBefore(String date1, String date2){
         String[] arr1;
         String[] arr2;

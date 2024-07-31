@@ -1,19 +1,21 @@
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.WindowConstants;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
-import java.awt.FlowLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
+
+/**
+ * 
+ * View for the feature of the hotel that checks for available rooms at a given date
+ */
 public class AvailRoomsView {
     private JFrame aFrame;
     private ArrayList<JButton> hotelButtons = new ArrayList<>();
@@ -22,6 +24,9 @@ public class AvailRoomsView {
     private JLabel date;
     private JPanel panel;
     private JScrollPane scroll;
+    /**
+     * constructor for AvailRoomsView
+     */
     public AvailRoomsView(){
         aFrame = new JFrame();
         this.aFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -35,12 +40,26 @@ public class AvailRoomsView {
         this.panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         this.aFrame.setVisible(true);
     }
+
+    /**
+     * adds action listener to a button
+     * @param a the action listener
+     * @param button the button
+     */
     public void addAl2button(ActionListener a, JButton button){
         button.addActionListener(a);
     }
+    /**
+     * adds a button
+     * @param button
+     */
     public void adHotelButton(JButton button){
         hotelButtons.add(button);
     }
+
+    /**
+     * makes the buttons visible
+     */
     public void showButtons(){
         this.aFrame.add(date);
         this.aFrame.add(textField);
@@ -53,9 +72,17 @@ public class AvailRoomsView {
         this.aFrame.add(scroll);
 
     }
+    /**
+     * gets date from the text field
+     * @return date
+     */
     public String getDate(){
         return this.textField.getText();
     }
+    /**
+     * sets the text of the text area
+     * @param info text to be set
+     */
     public void setTextArea(String info){
         this.textArea.setText(info);
     }

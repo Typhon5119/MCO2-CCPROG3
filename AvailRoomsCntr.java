@@ -2,10 +2,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
+/**
+ * 
+ * The controller for the hotel feature that checks for available rooms on a given date
+ * 
+ */
 public class AvailRoomsCntr {
     private AvailRoomsView view;
     private HRSmodel model;
+
+    /**
+     * Constructor
+     * @param view the view object
+     * @param model the model object
+     */
     public AvailRoomsCntr(AvailRoomsView view, HRSmodel model){
         for (int i = 0; i < model.getHotellist().size(); i++){
             JButton temp = new JButton(model.getHotellist().get(i).getName());
@@ -32,6 +42,14 @@ public class AvailRoomsCntr {
         view.showButtons();
 
     }
+
+
+    /**
+     * 
+     * function to detect if a date is valid
+     * @param date user-entered date
+     * @return if date entered is valid
+     */
     private boolean isValidDate(String date){
         String[] arr = date.split("/");
         try{

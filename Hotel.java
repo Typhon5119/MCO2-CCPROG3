@@ -169,7 +169,7 @@ public class Hotel{
                     double newCost = temp.getTotalCost() * .90;
                     temp.setTotalCost(newCost);
                 }
-                if (pCode.equals("STAY4-GET1")){
+                if (pCode.equals("STAY4_GET1")){
                     if (temp.getLengthOfStay() + 1 >= 5)
                         temp.setTotalCost(temp.getTotalCost() - firstDayCost);
                 }
@@ -197,7 +197,12 @@ public class Hotel{
         for(int i = 0; i < this.rooms.size(); i++){
 
             this.rooms.get(i).setBasePrice(basePrice);
-
+            if (this.rooms.get(i) instanceof Deluxe){
+                this.rooms.get(i).setBasePrice(basePrice + (basePrice * .20));
+            }
+            if (this.rooms.get(i) instanceof Executive){
+                this.rooms.get(i).setBasePrice(basePrice + (basePrice * .35));
+            }
         }
 
     }
@@ -380,6 +385,11 @@ public class Hotel{
         }
         return info;
     }
+    /**
+     * modifies the price
+     * @param day the day
+     * @param percent the percentage
+     */
     public void addPriceAdj(int day, int percent){
         
         if (AdjustedDayIndex(day, priceAdjDay) == -1) {
@@ -391,11 +401,18 @@ public class Hotel{
         }
         
     }
+    /**
+     * gets price for adjusted days
+     * @return the price
+     */
 
     public ArrayList<Integer> getpriceAdjdays(){
         return this.priceAdjDay;
     }
-
+    /**
+     * getter for the modification info
+     * @return information
+     */
     public String getModifications(){
         String info = "";
         for (int i = 0; i < priceAdjDay.size(); i++){
@@ -405,6 +422,12 @@ public class Hotel{
         return info;
     }
 
+    /**
+     * gets the index for the  adjusted days
+     * @param day the day
+     * @param priceAdjDay the price
+     * @return
+     */
     private int AdjustedDayIndex(int day, ArrayList<Integer> priceAdjDay){
         for (int j = 0; j < priceAdjDay.size(); j++){
             if (day == priceAdjDay.get(j))

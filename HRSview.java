@@ -1,21 +1,23 @@
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import javax.swing.JPanel;
 
-import java.awt.FlowLayout;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+/**
+ * View for HRS window
+ */
 public class HRSview {
     private JFrame mainFrame;
     private JButton addHotel, viewHotel, viewHotelAd, viewHad2;
     private JButton ManageHotel, Book, DPadj;
     private JLabel title, s_or_f, HnameLabel, nRoomsLabel, nDRoomsLabel, nERoomsLabel;
     private JTextField HName, nRooms, guestName, nDRoomsTextF, nERoomsTextF;
+    /**
+     * Constructor for HRSview
+     */
     public HRSview(){
         this.mainFrame = new JFrame("HRS");
 
@@ -76,6 +78,9 @@ public class HRSview {
         
         this.mainFrame.setVisible(true);
     }
+    /**
+     * adds components to the frame
+     */
     public void addComponents(){
         this.mainFrame.add(HnameLabel);
         this.mainFrame.add(HName);
@@ -94,40 +99,90 @@ public class HRSview {
         this.mainFrame.add(Book);
         this.mainFrame.add(DPadj);
     }
+    /**
+     * setter for label if hotel creation is successful or not
+     * @param text
+     */
     public void setsorf(String text){
         this.s_or_f.setText(text);
     }
+
+    /**
+     * gets the hotel name
+     * @return hotel name
+     */
     public String getHNameText(){
         return this.HName.getText();
     }
+    /**
+     * gets the number of standard rooms
+     * @return number of standard rooms
+     */
     public String getnRooms(){
         return this.nRooms.getText();
     }
+    /**
+     * gets the number of deluxe rooms
+     * @return number of deluxe rooms
+     */
     public String getnDrooms(){
         return this.nDRoomsTextF.getText();
     }
+    /**
+     * gets the number of executive rooms
+     * @return number of executive rooms
+     */
     public String getnErooms(){
         return this.nERoomsTextF.getText();
     }
+    /**
+     * adds actions listener to View Hotel Advanced button
+     * @param actionListener the action listener
+     */
     public void setactionListenerAd(ActionListener actionListener){
         this.viewHotelAd.addActionListener(actionListener);
     }
+    /**
+     * adds actions listener to Add Hotel button
+     * @param actionListener the action listener
+     */
     public void setactionListener1(ActionListener actionListener){
         this.addHotel.addActionListener(actionListener);
     }
+    /**
+     * adds actions listener to View Hotel button
+     * @param actionListener the action listener
+     */
     public void setactionListener2(ActionListener actionListener){
         this.viewHotel.addActionListener(actionListener);
     }
+    /**
+     * adds actions listener to Manage Hotel button
+     * @param actionListener the action listener
+     */
     public void setactionListener3(ActionListener actionListener){
         this.ManageHotel.addActionListener(actionListener);
     }
+    /**
+     * adds actions listener to Booking button
+     * @param actionListener the action listener
+     */
     public void setactionListener4(ActionListener actionListener){
         this.Book.addActionListener(actionListener);
     }
+    /**
+     * adds actions listener to date price modifier button
+     * @param actionListener the action listener
+     */
     public void setactionListener5(ActionListener actionListener){
         this.DPadj.addActionListener(actionListener);
     }
+    /**
+     * adds actions listener to View Hotel Advanced 2 button
+     * @param actionListener the action listener
+     */
     public void setALvHad2(ActionListener a){
         this.viewHad2.addActionListener(a);
     }
+
 }

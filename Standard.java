@@ -2,7 +2,7 @@
 /**
  * Represents a room in a hotel
  */
-public class Room {
+public class Standard {
     /**
      * name of room
      */
@@ -10,12 +10,12 @@ public class Room {
     /**
      * base price of room per night
      */
-    protected double basePrice;
+    private float basePrice;
     
     /**
      * room constructor
      */
-    public Room(){
+    public Standard(){
 
         this.basePrice = (float) 1299;
 
@@ -24,7 +24,7 @@ public class Room {
      * room constructor
      * @param name room name
      */
-    public Room(String name){
+    public Standard(String name){
 
         this.name = name;
         this.basePrice = (float) 1299;
@@ -45,9 +45,9 @@ public class Room {
      * changes base price
      * @param basePrice new base price
      */
-    public void setBasePrice(double basePrice){
+    public void setBasePrice(float basePrice){
 
-        this.basePrice = (double) basePrice;
+        this.basePrice = (float) basePrice;
 
     }
 
@@ -65,24 +65,10 @@ public class Room {
      * returns the base price of the room
      * @return base price of room
      */
-    public double getBasePrice(){
+    public float getBasePrice(){
 
         return this.basePrice;
 
-    }
-
-    public double getTrueBaseP(){
-        double BP;
-        if (this instanceof Deluxe){   
-            BP = basePrice / (1 + .20); 
-        }
-        else if (this instanceof Executive){   
-            BP = basePrice / (1 + .35);
-        }
-        else{
-            BP = basePrice;
-        }
-        return BP;
     }
 
 }

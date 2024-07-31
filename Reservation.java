@@ -121,7 +121,10 @@ public class Reservation {
 
     }
 
-
+    /**
+     * sets total cost
+     * @param newCost new cost
+     */
     public void setTotalCost(double newCost){
         this.totalCost = newCost;
     }

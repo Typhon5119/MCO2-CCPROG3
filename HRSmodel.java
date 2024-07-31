@@ -1,7 +1,14 @@
 import java.util.ArrayList;
 
+/**
+ * model component for the HRS window
+ */
+
 public class HRSmodel {
     private ArrayList<Hotel> hotelList = new ArrayList<>();
+    /**
+     * Constructor
+     */
     public HRSmodel(){
 
     }
@@ -68,6 +75,11 @@ public class HRSmodel {
         }
         return res;
     }
+
+    /**
+     * getter for hotel list
+     * @return hotel list
+     */
     public ArrayList<Hotel> getHotellist(){
         return hotelList;
     }

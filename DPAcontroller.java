@@ -1,8 +1,12 @@
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
+
+/**
+ * 
+ * Controller for the date price modifier feature
+ */
 
 public class DPAcontroller {
     DPAchoose dpaView;
