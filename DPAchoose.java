@@ -84,7 +84,7 @@ public class DPAchoose {
     }
     /**
      * getter for the percent text field
-     * @return
+     * @return the user input for the rate
      */
     public String getPercent(){
         return this.percentTextField.getText();
@@ -107,7 +107,7 @@ public class DPAchoose {
         
     /**
      * adds action listenders to the buttons
-     * @param a
+     * @param a action listener for the button
      */
     public void addAL(ActionListener a){
         for (int i = 0; i < buttons.size(); i++){

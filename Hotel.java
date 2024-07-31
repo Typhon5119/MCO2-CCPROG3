@@ -92,6 +92,8 @@ public class Hotel{
      * @param startDate guests date of check in
      * @param endDate guests date of check out
      * @param guestName name of guest booking
+     * @param pCode promo code
+     * @param rType room type of user
      * @return name of room assigned to guest
      */
     public String findRoom(String startDate, String endDate, String guestName, String pCode, int rType){
@@ -245,6 +247,7 @@ public class Hotel{
 
     /**
      * displays the hotel information
+     * @return hotel information
      */
     public String displayHotel(){
         
@@ -381,6 +384,7 @@ public class Hotel{
     /**
      * displays the reservations of a room
      * @param index index of room in rooms
+     * @return reservations
      */
     public String printRoomReservations(int index){
         String info = "";

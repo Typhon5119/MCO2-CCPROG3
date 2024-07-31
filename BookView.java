@@ -60,7 +60,7 @@ public class BookView {
     }
     /**
      * getter for guest name
-     * @returns name of guest
+     * @return name of guest
      */
     public String getGuestName(){
         return guestName.getText();
@@ -112,28 +112,28 @@ public class BookView {
     }
     /**
      * adds button
-     * @param button2add
+     * @param button2add button to be added
      */
     public void addbutton(JButton button2add){
         hotelButtons.add(button2add);
     }
     /**
      * getter
-     * @returns the standard room button
+     * @return the standard room button
      */
     public JButton getS(){
         return this.s;
     }
     /**
      * getter
-     * @returns the deluxe room button
+     * @return the deluxe room button
      */
     public JButton getD(){
         return this.d;
     }
     /**
      * getter
-     * @returns the executive room button
+     * @return the executive room button
      */
     public JButton getE(){
         return this.e;

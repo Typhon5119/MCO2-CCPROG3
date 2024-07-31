@@ -51,7 +51,7 @@ public class AvailRoomsView {
     }
     /**
      * adds a button
-     * @param button
+     * @param button hotel button to add
      */
     public void adHotelButton(JButton button){
         hotelButtons.add(button);

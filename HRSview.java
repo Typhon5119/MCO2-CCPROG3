@@ -101,7 +101,7 @@ public class HRSview {
     }
     /**
      * setter for label if hotel creation is successful or not
-     * @param text
+     * @param text text that will be set to s_or_f
      */
     public void setsorf(String text){
         this.s_or_f.setText(text);
@@ -179,7 +179,7 @@ public class HRSview {
     }
     /**
      * adds actions listener to View Hotel Advanced 2 button
-     * @param actionListener the action listener
+     * @param a the action listener
      */
     public void setALvHad2(ActionListener a){
         this.viewHad2.addActionListener(a);
