@@ -67,10 +67,22 @@ public class Hotel{
      * automatically sets the room names
      */
     public void setRoomsNameAuto(){
-
+        String roomtype;
+        int roomNo = 1;
+        
         for (int i = 0; i < this.rooms.size(); i++){
+            if (this.rooms.get(i) instanceof Deluxe){
+                roomtype = "Deluxe";
+            }
+            else if (this.rooms.get(i) instanceof Executive){
+                roomtype = "Executive";
+            }
+            else {
+                roomtype = "Standard";
+            }
 
-            this.rooms.get(i).setName("Room " + Integer.toString(i + 1));
+            this.rooms.get(i).setName("(" + roomtype + ")" + " Room " + roomNo);
+            roomNo++;
 
         }
 
